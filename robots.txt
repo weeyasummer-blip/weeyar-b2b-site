@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://weeyar.com/sitemap.xml

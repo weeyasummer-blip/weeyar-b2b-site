@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "vitamin-d3-k2",
+    "name": "Vitamin D3 + K2",
+    "category": "Softgels",
+    "description": "5000 IU D3 with K2 MK-7"
+  },
+  {
+    "slug": "creatine-gummies",
+    "name": "Creatine Gummies",
+    "category": "Gummies",
+    "description": "Popular sports nutrition gummy format"
+  },
+  {
+    "slug": "apple-cider-vinegar",
+    "name": "Apple Cider Vinegar Gummies",
+    "category": "Gummies",
+    "description": "Daily wellness gummy with B12"
+  },
+  {
+    "slug": "biotin-gummies",
+    "name": "Biotin Hair Skin & Nails",
+    "category": "Gummies",
+    "description": "Beauty-from-within supplement format"
+  },
+  {
+    "slug": "shilajit-resin",
+    "name": "Shilajit Resin",
+    "category": "Resin",
+    "description": "Premium traditional wellness product"
+  },
+  {
+    "slug": "vitamin-c-effervescent",
+    "name": "Vitamin C Effervescent",
+    "category": "Effervescent",
+    "description": "1000 mg fast-dissolving vitamin support"
+  },
+  {
+    "slug": "melatonin-complex",
+    "name": "Melatonin Complex",
+    "category": "Capsules",
+    "description": "Mature nighttime wellness formula"
+  },
+  {
+    "slug": "beetroot-supplement",
+    "name": "Beetroot Supplement",
+    "category": "Capsules",
+    "description": "Trending sports and daily wellness product"
+  }
+]
