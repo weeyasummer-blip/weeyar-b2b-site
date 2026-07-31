@@ -3,13 +3,13 @@
     "slug": "vitamin-d3-k2",
     "name": "Vitamin D3 + K2",
     "category": "Softgels",
-    "description": "5000 IU D3 with K2 MK-7"
+    "description": "5000 IU D3 with K2 MK-7 — Immune & Bone Support"
   },
   {
     "slug": "creatine-gummies",
     "name": "Creatine + Collagen Gummies",
     "category": "Gummies",
-    "description": "Female sports nutrition"
+    "description": "Female sports nutrition — Muscle Recovery & Energy"
   },
   {
     "slug": "apple-cider-vinegar",
@@ -51,7 +51,7 @@
     "slug": "collagen-peptides",
     "name": "Collagen Peptides",
     "category": "Powders",
-    "description": "Premium hydrolyzed collagen"
+    "description": "Premium hydrolyzed collagen for skin, hair and joint health"
   },
   {
     "slug": "multivitamin-gummies",
@@ -63,19 +63,19 @@
     "slug": "omega-3-fish-oil",
     "name": "Omega-3 Fish Oil",
     "category": "Softgels",
-    "description": "High-potency EPA/DHA"
+    "description": "High-potency EPA/DHA for heart and brain health"
   },
   {
     "slug": "turmeric-curcumin",
     "name": "Turmeric Curcumin",
     "category": "Capsules",
-    "description": "Anti-inflammatory support with black pepper"
+    "description": "Anti-inflammatory support with black pepper for absorption"
   },
   {
     "slug": "magnesium-glycinate",
     "name": "Magnesium Glycinate",
     "category": "Capsules",
-    "description": "Gentle, highly absorbable magnesium"
+    "description": "Gentle, highly absorbable magnesium for sleep and muscle relaxation"
   },
   {
     "slug": "probiotic-complex",
