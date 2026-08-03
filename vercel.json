@@ -42,17 +42,5 @@
       ]
     }
   ],
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "(?!weeyar\\.com).*"
-        }
-      ],
-      "destination": "https://weeyar.com/:path*",
-      "permanent": true
-    }
-  ]
+  
 }
