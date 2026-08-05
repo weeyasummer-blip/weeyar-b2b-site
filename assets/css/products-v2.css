@@ -24,8 +24,8 @@
 
 /* Products V2.3: approved hero and complete final row */
 .catalog-hero-grid{grid-template-columns:.98fr 1.02fr;gap:22px;align-items:start}
-.hero-products.approved-hero{min-height:0;aspect-ratio:auto;border-radius:0;overflow:visible;background:transparent;box-shadow:none;display:flex;align-items:center}
-.hero-products.approved-hero img:first-child{position:static;width:108%;max-width:none;height:auto;margin:-10px 0 0 -5%;object-fit:contain;filter:drop-shadow(0 18px 28px rgba(43,23,78,.12));border-radius:18px;display:block}
+.hero-products.approved-hero{position:relative;min-height:0;aspect-ratio:53/28;border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 18px 28px rgba(43,23,78,.12)}
+.hero-products.approved-hero img:first-child{position:absolute;inset:0;width:100%;max-width:none;height:100%;margin:0;object-fit:cover;object-position:center bottom;filter:none;border-radius:0;display:block}
 @media(min-width:1051px){.catalog-grid .catalog-card:nth-last-child(2),.catalog-grid .catalog-card:last-child{grid-column:auto}.catalog-grid .catalog-card:nth-last-child(-n+2){display:flex}.catalog-grid .catalog-card:nth-last-child(-n+2) .catalog-body{padding:20px}.catalog-grid .catalog-card:nth-last-child(-n+2) .catalog-body h3{font-size:18px}}
 .solution-card{min-height:100%;padding:28px 24px;text-align:center;align-items:center;justify-content:center;background:linear-gradient(160deg,#f5f0ff,#fff);border-color:#ded2ff}
 .solution-card.catalog-card-special{background:linear-gradient(160deg,#fff5ec,#fff);border-color:#ffd7bd}
