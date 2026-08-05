@@ -43,3 +43,7 @@
 
 @media(max-width:1050px){.v95-top{font-size:12px}.v95-header .links{font-size:14px}.v95-process-grid b{font-size:12px}}
 @media(max-width:580px){.v95-top{font-size:11px}.v95-benefits b{font-size:14px}.v95-benefits span{font-size:11px}.v95-process-grid b{font-size:11px}.v95-cta h2{font-size:22px}.v95-cta p{font-size:13px}.v95-contact span{font-size:12px}.v95-contact b{font-size:13px}.v95-footer .container{font-size:11px}}
+
+/* Restore complete Home footer */
+.home-footer{margin-top:0;padding:48px 0 20px;background:#1f1234}.home-footer .logo{width:220px}.home-footer p{max-width:330px;color:#d8cfe2;font-size:14px;line-height:1.6}.home-footer h4{margin:0 0 12px}.home-footer .footer a{font-size:14px}.home-social{display:flex;gap:10px;margin-top:16px}.home-social a{width:46px;height:46px;margin:0!important;border:1.5px solid #ffffff66;border-radius:50%;display:grid!important;place-items:center;background:#ffffff0f;color:#fff;transition:.2s}.home-social a:hover{background:#fff;color:#6436e8;transform:translateY(-2px)}.home-social svg{width:23px;height:23px;display:block;fill:currentColor}.home-footer .copy{font-size:12px}
+@media(max-width:580px){.home-footer{padding-top:38px}.home-footer .logo{width:190px}}
