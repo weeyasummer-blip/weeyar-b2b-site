@@ -15,3 +15,31 @@
 @media(max-width:1050px){.v95-copy h1{font-size:43px}.v95-copy .actions{flex-wrap:wrap}.v95-hero-inner{grid-template-columns:minmax(0,47%) minmax(0,53%);gap:12px}}
 @media(max-width:900px){.v95-hero-inner{grid-template-columns:1fr}.v95-copy h1{font-size:clamp(40px,7vw,55px)}.v95-product-stage{margin-left:0}.v95-product-stage img{right:-55px}.v95-factory-gallery{min-height:330px}}
 @media(max-width:580px){.v95-copy h1{font-size:37px}.v95-copy .actions{flex-wrap:wrap}.v95-product-stage{margin-left:-13px}.v95-product-stage img{right:-40px}.v95-factory-gallery{grid-template-columns:1fr;min-height:420px}.v95-factory-photo{min-height:210px}.v95-factory-gallery .v95-factory-stats{grid-template-columns:repeat(2,1fr)}}
+
+/* V7.1 readability pass — typography only */
+.v95-top{font-size:13px}
+.v95-header .links{font-size:15px}
+.v95-proof span{font-size:11px}
+.v95-copy>p{font-size:15px}
+.v95-checks{font-size:11px}
+.v95-certs b{font-size:15px}
+.v95-certs span{font-size:10px}
+.v95-stamp small{font-size:8px}
+.v95-metrics b{font-size:17px}
+.v95-metrics span{font-size:10px}
+.v95-title{font-size:13px}
+.v95-formats b{font-size:12px}
+.v95-benefits .eyebrow{font-size:14px}
+.v95-benefits b{font-size:14px}
+.v95-benefits span{font-size:11px;line-height:1.35}
+.v95-factory-stats div{font-size:10px}
+.v95-factory-stats b{font-size:22px}
+.v95-process-grid b{font-size:11px;line-height:1.3}
+.v95-cta h2{font-size:21px}
+.v95-cta p{font-size:12px}
+.v95-contact span{font-size:11px}
+.v95-contact b{font-size:12px}
+.v95-footer .container{font-size:10.5px}
+
+@media(max-width:1050px){.v95-top{font-size:12px}.v95-header .links{font-size:14px}.v95-process-grid b{font-size:11px}}
+@media(max-width:580px){.v95-top{font-size:11px}.v95-benefits b{font-size:14px}.v95-benefits span{font-size:11px}.v95-process-grid b{font-size:10.5px}.v95-footer .container{font-size:10px}}
