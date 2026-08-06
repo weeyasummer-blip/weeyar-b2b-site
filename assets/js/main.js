@@ -16,6 +16,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  const referenceFile = document.querySelector('#contact-file');
+  const referenceFileName = document.querySelector('#contact-file-name');
+  if (referenceFile && referenceFileName) {
+    referenceFile.addEventListener('change', () => {
+      referenceFileName.textContent = referenceFile.files && referenceFile.files[0]
+        ? referenceFile.files[0].name
+        : 'No file selected';
+    });
+  }
+
   const inquiryForm = document.querySelector('#inquiry');
   if (inquiryForm) {
     inquiryForm.addEventListener('submit', (event) => {
