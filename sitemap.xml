@@ -1,1 +1,22 @@
-<?xml version="1.0"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://weeyar.com/</loc></url><url><loc>https://weeyar.com/products.html</loc></url><url><loc>https://weeyar.com/oem.html</loc></url><url><loc>https://weeyar.com/about.html</loc></url><url><loc>https://weeyar.com/contact.html</loc></url><url><loc>https://weeyar.com/products/vitamin-d3-k2.html</loc></url><url><loc>https://weeyar.com/products/creatine-gummies.html</loc></url><url><loc>https://weeyar.com/products/apple-cider-vinegar.html</loc></url><url><loc>https://weeyar.com/products/biotin-gummies.html</loc></url><url><loc>https://weeyar.com/products/shilajit-resin.html</loc></url><url><loc>https://weeyar.com/products/vitamin-c-effervescent.html</loc></url><url><loc>https://weeyar.com/products/melatonin-complex.html</loc></url><url><loc>https://weeyar.com/products/beetroot-supplement.html</loc></url></urlset>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://weeyar.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://weeyar.com/products</loc><priority>0.9</priority></url>
+  <url><loc>https://weeyar.com/oem</loc><priority>0.9</priority></url>
+  <url><loc>https://weeyar.com/about</loc><priority>0.8</priority></url>
+  <url><loc>https://weeyar.com/contact</loc><priority>0.8</priority></url>
+  <url><loc>https://weeyar.com/product-detail?id=calm-mood-gummies</loc><priority>0.7</priority></url>
+  <url><loc>https://weeyar.com/product-detail?id=womens-balance-gummies</loc><priority>0.7</priority></url>
+  <url><loc>https://weeyar.com/product-detail?id=magnesium-glycinate-gummies</loc><priority>0.7</priority></url>
+  <url><loc>https://weeyar.com/product-detail?id=maca-liquid-drops</loc><priority>0.7</priority></url>
+  <url><loc>https://weeyar.com/product-detail?id=milk-thistle-drops</loc><priority>0.7</priority></url>
+  <url><loc>https://weeyar.com/product-detail?id=sleep-spray</loc><priority>0.7</priority></url>
+  <url><loc>https://weeyar.com/product-detail?id=womens-probiotic</loc><priority>0.7</priority></url>
+  <url><loc>https://weeyar.com/product-detail?id=daily-probiotic</loc><priority>0.7</priority></url>
+  <url><loc>https://weeyar.com/product-detail?id=creatine-hydration</loc><priority>0.7</priority></url>
+  <url><loc>https://weeyar.com/product-detail?id=slippery-elm-powder</loc><priority>0.7</priority></url>
+  <url><loc>https://weeyar.com/product-detail?id=glutathione-strips</loc><priority>0.7</priority></url>
+  <url><loc>https://weeyar.com/product-detail?id=slim-gut-probiotic</loc><priority>0.7</priority></url>
+  <url><loc>https://weeyar.com/product-detail?id=shilajit-gummies</loc><priority>0.7</priority></url>
+  <url><loc>https://weeyar.com/product-detail?id=electrolyte-powder</loc><priority>0.7</priority></url>
+</urlset>
