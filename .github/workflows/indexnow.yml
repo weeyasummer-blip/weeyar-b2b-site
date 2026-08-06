@@ -1,0 +1,50 @@
+name: Notify IndexNow
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "*.html"
+      - "**/*.html"
+      - "*.xml"
+      - "*.json"
+      - "**/*.json"
+      - "assets/**"
+      - "products/**"
+      - ".github/workflows/indexnow.yml"
+      - ".github/scripts/submit-indexnow.mjs"
+      - "26bd87aa36524a90926c3b137ba6ec89.txt"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: weeyar-indexnow
+  cancel-in-progress: true
+
+jobs:
+  submit:
+    name: Submit live sitemap URLs
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Wait for Vercel deployment
+        run: sleep 60
+
+      - name: Notify IndexNow
+        env:
+          INDEXNOW_HOST: weeyar.com
+          INDEXNOW_KEY: 26bd87aa36524a90926c3b137ba6ec89
+          INDEXNOW_KEY_LOCATION: https://weeyar.com/26bd87aa36524a90926c3b137ba6ec89.txt
+          SITEMAP_URL: https://weeyar.com/sitemap.xml
+        run: node .github/scripts/submit-indexnow.mjs
