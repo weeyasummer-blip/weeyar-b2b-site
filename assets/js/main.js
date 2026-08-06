@@ -1,3 +1,18 @@
+(() => {
+  const measurementId = 'G-H3QXK4X1K4';
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function gtag() {
+    window.dataLayer.push(arguments);
+  };
+  window.gtag('js', new Date());
+  window.gtag('config', measurementId, { send_page_view: true });
+
+  const analyticsScript = document.createElement('script');
+  analyticsScript.async = true;
+  analyticsScript.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+  document.head.appendChild(analyticsScript);
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
   const menu = document.querySelector('.menu');
   const links = document.querySelector('.links');
@@ -14,6 +29,39 @@ document.addEventListener('DOMContentLoaded', () => {
         card.style.display = button.dataset.f === 'all' || card.dataset.c === button.dataset.f ? 'block' : 'none';
       });
     });
+  });
+
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest('a');
+    if (!link || !window.gtag) return;
+
+    const href = link.getAttribute('href') || '';
+    const linkText = link.textContent.trim().replace(/\s+/g, ' ').slice(0, 100);
+
+    if (href.includes('wa.me/')) {
+      window.gtag('event', 'whatsapp_click', {
+        contact_method: 'whatsapp',
+        link_text: linkText,
+        page_path: window.location.pathname
+      });
+    } else if (href.startsWith('mailto:')) {
+      window.gtag('event', 'email_click', {
+        contact_method: 'email',
+        link_text: linkText,
+        page_path: window.location.pathname
+      });
+    } else if (href.includes('product-detail.html')) {
+      window.gtag('event', 'product_detail_click', {
+        link_text: linkText,
+        link_url: href,
+        page_path: window.location.pathname
+      });
+    } else if (href.includes('contact.html') || href === '#quote') {
+      window.gtag('event', 'quote_click', {
+        link_text: linkText,
+        page_path: window.location.pathname
+      });
+    }
   });
 
   const referenceFile = document.querySelector('#contact-file');
@@ -47,6 +95,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const subject = 'New Weeyar Website Inquiry';
+      if (window.gtag) {
+        window.gtag('event', 'generate_lead', {
+          form_name: 'contact_inquiry',
+          product_category: formData.get('Product Category') || 'not_selected',
+          target_market: formData.get('Target Market') || 'not_provided'
+        });
+      }
       const mailto = `mailto:summer@weeyar.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(rows.join('\n'))}`;
       window.location.href = mailto;
 
