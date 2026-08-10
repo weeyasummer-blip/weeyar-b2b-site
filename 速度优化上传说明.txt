@@ -1,0 +1,23 @@
+Weeyar 网站速度优化 V1.0
+
+本次只优化加载速度，不修改已确认的页面内容和视觉样式。
+
+主要优化：
+1. 大尺寸 PNG/JPG 转为高质量 WebP。
+2. 产品图和分类图按网页实际展示需求压缩。
+3. HOME、Products、OEM 首屏主图预加载。
+4. 首屏以下图片延迟加载。
+5. Google Analytics 改为空闲时加载，不再抢占首屏资源。
+
+上传方法：
+1. 解压本 ZIP。
+2. 将解压后看到的全部文件和文件夹拖入 GitHub 仓库上传页面。
+3. 选择 Commit directly to the main branch。
+4. 点击 Commit changes。
+5. 等待 Vercel 自动部署约 2–5 分钟。
+6. 用手机流量分别测试 weeyar.com 和 www.weeyar.com。
+
+注意：
+- ZIP 文件本身不要上传到 GitHub。
+- 原有 PNG/JPG 图片不需要删除；新版页面会自动使用体积更小的 WebP。
+- 上传时必须保留 assets、products 等文件夹层级。
