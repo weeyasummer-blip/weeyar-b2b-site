@@ -1,1 +1,136 @@
-{"version":2,"cleanUrls":true,"trailingSlash":false,"headers":[{"source":"/(.*)","headers":[{"key":"X-Content-Type-Options","value":"nosniff"},{"key":"X-Frame-Options","value":"DENY"},{"key":"X-XSS-Protection","value":"1; mode=block"},{"key":"Strict-Transport-Security","value":"max-age=63072000; includeSubDomains; preload"},{"key":"Referrer-Policy","value":"strict-origin-when-cross-origin"}]},{"source":"/assets/(.*)\\.(png|jpg|jpeg|gif|webp|svg|ico)$","headers":[{"key":"Cache-Control","value":"public, max-age=31536000, immutable"}]},{"source":"/assets/(.*)\\.(css|js)$","headers":[{"key":"Cache-Control","value":"public, max-age=604800, must-revalidate"}]},{"source":"/(.*)\\.html$","headers":[{"key":"Cache-Control","value":"public, max-age=0, must-revalidate"}]}]}
+{
+  "version": 2,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)\\.(png|jpg|jpeg|gif|webp|svg|ico)$",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)\\.(css|js)$",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.html$",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/products/apple-cider-vinegar",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/products/beetroot-supplement",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/products/biotin-gummies",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/products/collagen-peptides",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/products/creatine-gummies",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/products/magnesium-glycinate",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/products/melatonin-complex",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/products/multivitamin-gummies",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/products/omega-3-fish-oil",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/products/probiotic-complex",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/products/shilajit-resin",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/products/turmeric-curcumin",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/products/vitamin-c-effervescent",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/products/vitamin-d3-k2",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "destination": "/products",
+      "permanent": true
+    }
+  ]
+}

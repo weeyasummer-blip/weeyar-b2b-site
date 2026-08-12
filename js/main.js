@@ -59,6 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
         link_text: linkText,
         page_path: window.location.pathname
       });
+    } else if (href.includes('/downloads/') || href.endsWith('.pdf')) {
+      window.gtag('event', 'catalog_download', {
+        file_name: href.split('/').pop(),
+        link_text: linkText,
+        page_path: window.location.pathname
+      });
     } else if (href.includes('product-detail.html')) {
       window.gtag('event', 'product_detail_click', {
         link_text: linkText,
@@ -106,6 +112,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const subject = 'New Weeyar Website Inquiry';
       if (window.gtag) {
         window.gtag('event', 'generate_lead', {
+          form_name: 'contact_inquiry',
+          product_category: formData.get('Product Category') || 'not_selected',
+          target_market: formData.get('Target Market') || 'not_provided'
+        });
+        window.gtag('event', 'rfq_submit', {
           form_name: 'contact_inquiry',
           product_category: formData.get('Product Category') || 'not_selected',
           target_market: formData.get('Target Market') || 'not_provided'
