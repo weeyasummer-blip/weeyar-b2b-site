@@ -56,8 +56,14 @@ document.addEventListener('DOMContentLoaded', () => {
         link_text: linkText,
         page_path: window.location.pathname
       });
-    } else if (href.includes('product-detail.html')) {
+    } else if (href.includes('product-detail.html') || /(?:^|\/)products\//.test(href)) {
       window.gtag('event', 'product_detail_click', {
+        link_text: linkText,
+        link_url: href,
+        page_path: window.location.pathname
+      });
+    } else if (href.includes('/categories/') || href.startsWith('categories/')) {
+      window.gtag('event', 'product_category_click', {
         link_text: linkText,
         link_url: href,
         page_path: window.location.pathname
