@@ -28,6 +28,11 @@
 .article-body .answer-box{padding:24px;border-left:5px solid var(--insight-purple);border-radius:12px;background:var(--insight-soft);font-size:18px}
 .article-body .checklist{padding:24px 28px;border:1px solid var(--insight-line);border-radius:18px;background:#fff}
 .article-body .checklist li::marker{color:var(--insight-purple)}
+.article-body .table-wrap{overflow-x:auto;margin:24px 0;border:1px solid var(--insight-line);border-radius:18px}
+.article-body table{width:100%;min-width:640px;border-collapse:collapse;background:#fff}
+.article-body th,.article-body td{padding:15px 17px;border-bottom:1px solid var(--insight-line);text-align:left;vertical-align:top}
+.article-body th{background:var(--insight-soft);color:var(--insight-ink)}
+.article-body tr:last-child td{border-bottom:0}
 .article-side{position:sticky;top:100px;padding:24px;border:1px solid var(--insight-line);border-radius:20px;background:#fff}
 .article-side h2{font-size:20px;margin:0 0 12px}
 .article-side a{display:block;padding:8px 0;color:var(--insight-purple);font-weight:700}
