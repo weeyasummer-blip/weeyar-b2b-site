@@ -80,46 +80,71 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  const attributionKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+  const query = new URLSearchParams(window.location.search);
+  attributionKeys.forEach((key) => {
+    const value = query.get(key);
+    if (value) window.sessionStorage.setItem(key, value);
+  });
+  if (!window.sessionStorage.getItem('landing_page')) {
+    window.sessionStorage.setItem('landing_page', window.location.href);
+  }
+
   const inquiryForm = document.querySelector('#inquiry');
   if (inquiryForm) {
-    inquiryForm.addEventListener('submit', (event) => {
+    const supplyExperience = document.querySelector('.response span');
+    if (supplyExperience) supplyExperience.textContent = 'Dietary supplement supply experience';
+    const note = inquiryForm.querySelector('.file-note');
+    if (note) note.textContent = 'Images, PDF, Word and Excel files are accepted.';
+
+    const status = document.createElement('div');
+    status.className = 'form-status';
+    status.setAttribute('role', 'status');
+    status.setAttribute('aria-live', 'polite');
+    inquiryForm.querySelector('.submit').before(status);
+
+    inquiryForm.addEventListener('submit', async (event) => {
       event.preventDefault();
+      const submitButton = inquiryForm.querySelector('.submit');
       const formData = new FormData(inquiryForm);
-      const rows = [];
-      let selectedFile = '';
+      attributionKeys.forEach((key) => {
+        formData.append(key, window.sessionStorage.getItem(key) || 'direct');
+      });
+      formData.append('landing_page', window.sessionStorage.getItem('landing_page') || window.location.href);
+      formData.append('_subject', 'New Weeyar Website Inquiry');
+      formData.append('_template', 'table');
 
-      for (const [key, value] of formData.entries()) {
-        if (value instanceof File) {
-          if (value.name) selectedFile = value.name;
-        } else if (String(value).trim()) {
-          rows.push(`${key}: ${value}`);
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending…';
+      status.className = 'form-status';
+      status.textContent = '';
+
+      try {
+        const response = await fetch('https://formsubmit.co/ajax/summer@weeyar.com', {
+          method: 'POST',
+          body: formData,
+          headers: { Accept: 'application/json' }
+        });
+        if (!response.ok) throw new Error('Submission failed');
+
+        status.className = 'form-status show success';
+        status.textContent = 'Thank you. Your inquiry has been sent successfully. We will contact you shortly.';
+        if (window.gtag) {
+          window.gtag('event', 'generate_lead', {
+            form_name: 'contact_inquiry',
+            product_category: formData.get('Product Category') || 'not_selected',
+            target_market: formData.get('Target Market') || 'not_provided'
+          });
+          window.gtag('event', 'rfq_submit', { form_name: 'contact_inquiry' });
         }
-      }
-
-      if (selectedFile) {
-        rows.push(`Reference File: ${selectedFile} (please attach this file to the email)`);
-      }
-
-      const subject = 'New Weeyar Website Inquiry';
-      if (window.gtag) {
-        window.gtag('event', 'generate_lead', {
-          form_name: 'contact_inquiry',
-          product_category: formData.get('Product Category') || 'not_selected',
-          target_market: formData.get('Target Market') || 'not_provided'
-        });
-        window.gtag('event', 'rfq_submit', {
-          form_name: 'contact_inquiry',
-          product_category: formData.get('Product Category') || 'not_selected',
-          target_market: formData.get('Target Market') || 'not_provided'
-        });
-      }
-      const mailto = `mailto:summer@weeyar.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(rows.join('\n'))}`;
-      window.location.href = mailto;
-
-      if (selectedFile) {
-        window.setTimeout(() => {
-          window.alert('Your email app is opening. Please attach the selected reference file before sending.');
-        }, 400);
+        inquiryForm.reset();
+        if (referenceFileName) referenceFileName.textContent = 'No file selected';
+      } catch (error) {
+        status.className = 'form-status show error';
+        status.innerHTML = 'The form could not be sent. Please email <a href="mailto:summer@weeyar.com">summer@weeyar.com</a> or contact us on WhatsApp.';
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Send Inquiry →';
       }
     });
   }
