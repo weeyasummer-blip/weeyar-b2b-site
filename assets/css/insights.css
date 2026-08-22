@@ -53,3 +53,8 @@
 .footer-social a{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border:1px solid rgba(255,255,255,.28);border-radius:50%;color:#fff;transition:.2s ease}
 .footer-social a:hover{background:#fff;color:var(--insight-purple);transform:translateY(-2px)}
 .footer-social svg{width:20px;height:20px;fill:currentColor}
+
+.insights-social{display:flex;align-items:center;gap:12px;margin-top:18px}
+.insights-social a{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border:1px solid rgba(255,255,255,.32);border-radius:50%;color:#fff;transition:.2s ease}
+.insights-social a:hover{background:#7b4dff;border-color:#7b4dff;transform:translateY(-2px)}
+.insights-social svg{width:19px;height:19px;fill:currentColor}
