@@ -58,6 +58,41 @@
   ],
   "redirects": [
     {
+      "source": "/about-us",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/pages/contact-us",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/pages/product-production",
+      "destination": "/oem",
+      "permanent": true
+    },
+    {
+      "source": "/collections/oem-odm-products",
+      "destination": "/oem",
+      "permanent": true
+    },
+    {
+      "source": "/pages/main-categories",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/pages/certificates-services",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/collections/minimum-order-300pcs",
+      "destination": "/private-label-dietary-supplements",
+      "permanent": true
+    },
+    {
       "source": "/products/apple-cider-vinegar",
       "destination": "/products",
       "permanent": true
