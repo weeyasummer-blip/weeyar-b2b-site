@@ -50,6 +50,12 @@ document.addEventListener('DOMContentLoaded', () => {
         link_text: linkText,
         page_path: window.location.pathname
       });
+    } else if (href.includes('Weeyar-B2B-Supplement-Buyer-Checklist.pdf')) {
+      window.gtag('event', 'checklist_download', {
+        file_name: href.split('/').pop(),
+        link_text: linkText,
+        page_path: window.location.pathname
+      });
     } else if (href.includes('/downloads/') || href.endsWith('.pdf')) {
       window.gtag('event', 'catalog_download', {
         file_name: href.split('/').pop(),
