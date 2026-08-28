@@ -42,3 +42,7 @@
 .benefit-icon{width:48px;height:48px;flex:0 0 48px;border-radius:50%;display:grid;place-items:center;color:#6f43f5;background:#f0ebff;font-size:24px;font-weight:800}
 .catalog-benefits p{margin:0}.catalog-benefits b,.catalog-benefits small{display:block}.catalog-benefits b{font-size:15px;margin-bottom:4px}.catalog-benefits small{color:var(--m);line-height:1.4}
 @media(max-width:800px){.catalog-hero-grid{grid-template-columns:1fr;gap:32px}.hero-products.approved-hero img:first-child{width:100%;margin:0}.catalog-benefits{grid-template-columns:1fr}.catalog-benefits>div+div{border-left:0;border-top:1px solid var(--line)}}
+.product-media{padding-top:12px}
+.product-media-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:960px;margin:28px auto 0}
+.product-media-grid img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:22px;background:#fff;box-shadow:0 14px 35px rgba(39,25,68,.10)}
+@media(max-width:720px){.product-media-grid{grid-template-columns:1fr;gap:16px}.product-media-grid img{border-radius:16px}}
