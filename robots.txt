@@ -1,10 +1,36 @@
 User-agent: *
 Allow: /
 
+# OpenAI search and user-requested retrieval
 User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic search and user-requested retrieval
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+# Perplexity search and user-requested retrieval
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Google Search, AI Overviews and Gemini grounding
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Bing Search and Microsoft Copilot discovery
+User-agent: Bingbot
 Allow: /
 
 Sitemap: https://weeyar.com/sitemap.xml
