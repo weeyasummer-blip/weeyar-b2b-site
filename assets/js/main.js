@@ -102,6 +102,14 @@ document.addEventListener('DOMContentLoaded', () => {
     window.sessionStorage.setItem('landing_page', window.location.href);
   }
 
+  const productHeading = document.querySelector('.detail-copy h1');
+  if (/^\/products\//.test(window.location.pathname) && productHeading) {
+    window.sessionStorage.setItem('source_product', productHeading.textContent.trim());
+    window.sessionStorage.setItem('source_product_page', window.location.href);
+  }
+  const requestedProduct = query.get('product');
+  if (requestedProduct) window.sessionStorage.setItem('source_product', requestedProduct);
+
   const inquiryForm = document.querySelector('#inquiry');
   if (inquiryForm) {
     const supplyExperience = document.querySelector('.response span');
@@ -123,6 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
         formData.append(key, window.sessionStorage.getItem(key) || 'direct');
       });
       formData.append('landing_page', window.sessionStorage.getItem('landing_page') || window.location.href);
+      formData.append('source_product', window.sessionStorage.getItem('source_product') || 'not_specified');
+      formData.append('source_product_page', window.sessionStorage.getItem('source_product_page') || 'not_specified');
       formData.append('_subject', 'New Weeyar Website Inquiry');
       formData.append('_template', 'table');
 
@@ -145,7 +155,8 @@ document.addEventListener('DOMContentLoaded', () => {
           window.gtag('event', 'generate_lead', {
             form_name: 'contact_inquiry',
             product_category: formData.get('Product Category') || 'not_selected',
-            target_market: formData.get('Target Market') || 'not_provided'
+            target_market: formData.get('Target Market') || 'not_provided',
+            source_product: formData.get('source_product') || 'not_specified'
           });
           window.gtag('event', 'rfq_submit', { form_name: 'contact_inquiry' });
         }
