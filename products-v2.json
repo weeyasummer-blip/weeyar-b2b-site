@@ -1,5 +1,19 @@
 [
  {
+  "slug": "multivitamin-gummies",
+  "name": "Multivitamin Gummies",
+  "category": "Gummies",
+  "image": "assets/images/catalog/multivitamin-gummies-weeyar.jpg",
+  "summary": "Yellow bear-shaped multivitamin gummies in a 60-count bottle format for B2B projects.",
+  "packaging": "60 gummies per bottle",
+  "features": [
+   "Multivitamin gummy format",
+   "Formula and flavor confirmed by project",
+   "Private-label bottle and carton options",
+   "Sample and OEM / ODM support"
+  ]
+ },
+ {
   "slug": "liposomal-vitamin-c-tablets",
   "name": "Liposomal Vitamin C Tablets",
   "category": "Capsules",
