@@ -108,10 +108,36 @@ document.addEventListener('DOMContentLoaded', () => {
     window.sessionStorage.setItem('source_product_page', window.location.href);
   }
   const requestedProduct = query.get('product');
-  if (requestedProduct) window.sessionStorage.setItem('source_product', requestedProduct);
+  const requestedCategory = query.get('category');
+  if (requestedProduct) {
+    window.sessionStorage.setItem('source_product', requestedProduct);
+    if (!window.sessionStorage.getItem('source_product_page') && document.referrer) {
+      window.sessionStorage.setItem('source_product_page', document.referrer);
+    }
+  }
+  if (requestedCategory) window.sessionStorage.setItem('source_product_category', requestedCategory);
 
   const inquiryForm = document.querySelector('#inquiry');
   if (inquiryForm) {
+    const productInput = inquiryForm.querySelector('#contact-product');
+    const productField = inquiryForm.querySelector('#product-context-field');
+    const productNote = inquiryForm.querySelector('#product-context-note');
+    const categorySelect = inquiryForm.querySelector('#contact-category');
+    const productContext = requestedProduct || window.sessionStorage.getItem('source_product');
+    const categoryContext = requestedCategory || window.sessionStorage.getItem('source_product_category');
+
+    if (productContext && productInput && productField) {
+      productInput.value = productContext.slice(0, 160);
+      productField.hidden = false;
+      if (productNote) productNote.classList.add('show');
+    }
+    if (categoryContext && categorySelect) {
+      const matchingOption = Array.from(categorySelect.options).find(
+        (option) => option.value.toLowerCase() === categoryContext.toLowerCase()
+      );
+      if (matchingOption) categorySelect.value = matchingOption.value;
+    }
+
     const supplyExperience = document.querySelector('.response span');
     if (supplyExperience) supplyExperience.textContent = 'Dietary supplement supply experience';
     const note = inquiryForm.querySelector('.file-note');
