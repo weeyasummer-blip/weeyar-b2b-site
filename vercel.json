@@ -128,11 +128,6 @@
       "permanent": true
     },
     {
-      "source": "/products/multivitamin-gummies",
-      "destination": "/products",
-      "permanent": true
-    },
-    {
       "source": "/products/omega-3-fish-oil",
       "destination": "/products",
       "permanent": true
@@ -160,6 +155,246 @@
     {
       "source": "/products/vitamin-d3-k2",
       "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "calm-mood-gummies"
+        }
+      ],
+      "destination": "/products/calm-mood-gummies",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "womens-balance-gummies"
+        }
+      ],
+      "destination": "/products/womens-balance-gummies",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "magnesium-glycinate-gummies"
+        }
+      ],
+      "destination": "/products/magnesium-glycinate-gummies",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "maca-liquid-drops"
+        }
+      ],
+      "destination": "/products/maca-liquid-drops",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "milk-thistle-drops"
+        }
+      ],
+      "destination": "/products/milk-thistle-drops",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "vitamin-b-complex-drops"
+        }
+      ],
+      "destination": "/products/vitamin-b-complex-drops",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "liposomal-vitamin-c-drops"
+        }
+      ],
+      "destination": "/products/liposomal-vitamin-c-drops",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "blood-sugar-blend-capsules"
+        }
+      ],
+      "destination": "/products/blood-sugar-blend-capsules",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "sleep-spray"
+        }
+      ],
+      "destination": "/products/sleep-spray",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "womens-probiotic"
+        }
+      ],
+      "destination": "/products/womens-probiotic",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "daily-probiotic"
+        }
+      ],
+      "destination": "/products/daily-probiotic",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "creatine-hydration"
+        }
+      ],
+      "destination": "/products/creatine-hydration",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "slippery-elm-powder"
+        }
+      ],
+      "destination": "/products/slippery-elm-powder",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "glutathione-strips"
+        }
+      ],
+      "destination": "/products/glutathione-strips",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "slim-gut-probiotic"
+        }
+      ],
+      "destination": "/products/slim-gut-probiotic",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "shilajit-gummies"
+        }
+      ],
+      "destination": "/products/shilajit-gummies",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "electrolyte-powder"
+        }
+      ],
+      "destination": "/products/electrolyte-powder",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "digestive-comfort-drops"
+        }
+      ],
+      "destination": "/products/digestive-comfort-drops",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "liposomal-vitamin-c-tablets"
+        }
+      ],
+      "destination": "/products/liposomal-vitamin-c-tablets",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "multivitamin-gummies"
+        }
+      ],
+      "destination": "/products/multivitamin-gummies",
       "permanent": true
     },
     {

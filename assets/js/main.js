@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         link_url: href,
         page_path: window.location.pathname
       });
-    } else if (href.includes('contact.html') || href === '#quote') {
+    } else if (/(?:^|\/)contact(?:\.html)?(?:[?#]|$)/.test(href) || href === '#quote') {
       window.gtag('event', 'quote_click', {
         link_text: linkText,
         page_path: window.location.pathname
@@ -152,6 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
     inquiryForm.addEventListener('submit', async (event) => {
       event.preventDefault();
       const submitButton = inquiryForm.querySelector('.submit');
+      if (submitButton.disabled) return;
       const formData = new FormData(inquiryForm);
       attributionKeys.forEach((key) => {
         formData.append(key, window.sessionStorage.getItem(key) || 'direct');
@@ -174,6 +175,8 @@ document.addEventListener('DOMContentLoaded', () => {
           headers: { Accept: 'application/json' }
         });
         if (!response.ok) throw new Error('Submission failed');
+        const result = await response.json();
+        if (result.success !== true && result.success !== 'true') throw new Error('Submission not accepted');
 
         status.className = 'form-status show success';
         status.textContent = 'Thank you. Your inquiry has been sent successfully. We will contact you shortly.';
@@ -189,8 +192,9 @@ document.addEventListener('DOMContentLoaded', () => {
         inquiryForm.reset();
         if (referenceFileName) referenceFileName.textContent = 'No file selected';
       } catch (error) {
+        if (window.gtag) window.gtag('event', 'rfq_error', { form_name: 'contact_inquiry' });
         status.className = 'form-status show error';
-        status.innerHTML = 'The form could not be sent. Please email <a href="mailto:summer@weeyar.com">summer@weeyar.com</a> or contact us on WhatsApp.';
+        status.innerHTML = 'The form could not be sent. Please email <a href="mailto:summer@weeyar.com">summer@weeyar.com</a> or <a href="https://wa.me/8613802837662" target="_blank" rel="noopener">contact us on WhatsApp</a>.';
       } finally {
         submitButton.disabled = false;
         submitButton.textContent = 'Send Inquiry →';
