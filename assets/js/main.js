@@ -14,6 +14,13 @@
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Storage can be unavailable in restricted browser sessions; inquiries must still work.
+  const memory = Object.create(null);
+  const storage = {
+    getItem(key) { try { return window.sessionStorage.getItem(key) || memory[key] || null; } catch (_) { return memory[key] || null; } },
+    setItem(key, value) { memory[key] = String(value); try { window.sessionStorage.setItem(key, value); } catch (_) {} },
+    removeItem(key) { delete memory[key]; try { window.sessionStorage.removeItem(key); } catch (_) {} }
+  };
   const menu = document.querySelector('.menu');
   const links = document.querySelector('.links');
 
@@ -96,26 +103,33 @@ document.addEventListener('DOMContentLoaded', () => {
   const query = new URLSearchParams(window.location.search);
   attributionKeys.forEach((key) => {
     const value = query.get(key);
-    if (value) window.sessionStorage.setItem(key, value);
+    if (value) storage.setItem(key, value);
   });
-  if (!window.sessionStorage.getItem('landing_page')) {
-    window.sessionStorage.setItem('landing_page', window.location.href);
+  if (!storage.getItem('landing_page')) {
+    storage.setItem('landing_page', window.location.href);
   }
 
   const productHeading = document.querySelector('.detail-copy h1');
   if (/^\/products\//.test(window.location.pathname) && productHeading) {
-    window.sessionStorage.setItem('source_product', productHeading.textContent.trim());
-    window.sessionStorage.setItem('source_product_page', window.location.href);
+    storage.setItem('source_product', productHeading.textContent.trim());
+    storage.setItem('source_product_page', window.location.href);
+    const categoryLabel = document.querySelector('.detail-copy .eyebrow');
+    if (categoryLabel) storage.setItem('source_product_category', categoryLabel.textContent.trim());
+    else storage.removeItem('source_product_category');
   }
   const requestedProduct = query.get('product');
   const requestedCategory = query.get('category');
   if (requestedProduct) {
-    window.sessionStorage.setItem('source_product', requestedProduct);
-    if (!window.sessionStorage.getItem('source_product_page') && document.referrer) {
-      window.sessionStorage.setItem('source_product_page', document.referrer);
+    if (requestedProduct !== storage.getItem('source_product')) {
+      storage.removeItem('source_product_page');
+      storage.removeItem('source_product_category');
+    }
+    storage.setItem('source_product', requestedProduct);
+    if (!storage.getItem('source_product_page') && document.referrer) {
+      storage.setItem('source_product_page', document.referrer);
     }
   }
-  if (requestedCategory) window.sessionStorage.setItem('source_product_category', requestedCategory);
+  if (requestedCategory) storage.setItem('source_product_category', requestedCategory);
 
   const inquiryForm = document.querySelector('#inquiry');
   if (inquiryForm) {
@@ -123,8 +137,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const productField = inquiryForm.querySelector('#product-context-field');
     const productNote = inquiryForm.querySelector('#product-context-note');
     const categorySelect = inquiryForm.querySelector('#contact-category');
-    const productContext = requestedProduct || window.sessionStorage.getItem('source_product');
-    const categoryContext = requestedCategory || window.sessionStorage.getItem('source_product_category');
+    const productContext = requestedProduct || storage.getItem('source_product');
+    const categoryContext = requestedCategory || storage.getItem('source_product_category');
 
     if (productContext && productInput && productField) {
       productInput.value = productContext.slice(0, 160);
@@ -155,11 +169,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (submitButton.disabled) return;
       const formData = new FormData(inquiryForm);
       attributionKeys.forEach((key) => {
-        formData.append(key, window.sessionStorage.getItem(key) || 'direct');
+        formData.append(key, storage.getItem(key) || 'direct');
       });
-      formData.append('landing_page', window.sessionStorage.getItem('landing_page') || window.location.href);
-      formData.append('source_product', window.sessionStorage.getItem('source_product') || 'not_specified');
-      formData.append('source_product_page', window.sessionStorage.getItem('source_product_page') || 'not_specified');
+      formData.append('landing_page', storage.getItem('landing_page') || window.location.href);
+      formData.append('source_product', storage.getItem('source_product') || 'not_specified');
+      formData.append('source_product_page', storage.getItem('source_product_page') || 'not_specified');
       formData.append('_subject', 'New Weeyar Website Inquiry');
       formData.append('_template', 'table');
 
@@ -168,9 +182,12 @@ document.addEventListener('DOMContentLoaded', () => {
       status.className = 'form-status';
       status.textContent = '';
 
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), 20000);
       try {
         const response = await fetch('https://formsubmit.co/ajax/summer@weeyar.com', {
           method: 'POST',
+          signal: controller.signal,
           body: formData,
           headers: { Accept: 'application/json' }
         });
@@ -203,8 +220,9 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (error) {
         if (window.gtag) window.gtag('event', 'rfq_error', { form_name: 'contact_inquiry' });
         status.className = 'form-status show error';
-        status.innerHTML = 'The form could not be sent. Please email <a href="mailto:summer@weeyar.com">summer@weeyar.com</a> or <a href="https://wa.me/8613802837662" target="_blank" rel="noopener">contact us on WhatsApp</a>.';
+        status.innerHTML = 'We could not confirm your submission. Your details are still here. If you have not received a reply, please email <a href="mailto:summer@weeyar.com">summer@weeyar.com</a> or <a href="https://wa.me/8613802837662" target="_blank" rel="noopener">contact us on WhatsApp</a>.';
       } finally {
+        window.clearTimeout(timeout);
         submitButton.disabled = false;
         submitButton.textContent = 'Send Inquiry →';
       }
