@@ -1,5 +1,18 @@
 (() => {
   const measurementId = 'G-H3QXK4X1K4';
+  const testSetting = new URLSearchParams(window.location.search).get('weeyar_test');
+  let storedTest = false;
+  try {
+    if (testSetting === '1') window.sessionStorage.setItem('weeyar_test', '1');
+    if (testSetting === '0') window.sessionStorage.removeItem('weeyar_test');
+    storedTest = window.sessionStorage.getItem('weeyar_test') === '1';
+  } catch (_) {}
+  window.weeyarTestMode = testSetting === '1' || (testSetting !== '0' && storedTest);
+  window['ga-disable-' + measurementId] = window.weeyarTestMode;
+  if (window.weeyarTestMode) {
+    window.gtag = function () {};
+    return;
+  }
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function gtag() {
     window.dataLayer.push(arguments);
@@ -21,6 +34,20 @@ document.addEventListener('DOMContentLoaded', () => {
     setItem(key, value) { memory[key] = String(value); try { window.sessionStorage.setItem(key, value); } catch (_) {} },
     removeItem(key) { delete memory[key]; try { window.sessionStorage.removeItem(key); } catch (_) {} }
   };
+  if (window.weeyarTestMode) {
+    const banner = document.createElement('div');
+    banner.setAttribute('role', 'status');
+    banner.style.cssText = 'padding:12px 16px;background:#fff4cc;color:#312400;font:14px/1.5 Arial,sans-serif;overflow-wrap:anywhere';
+    banner.textContent = 'Test mode: analytics are disabled for this tab. Form submissions still send a real email marked TEST. ';
+    const exit = document.createElement('a');
+    const exitUrl = new URL(window.location.href);
+    exitUrl.searchParams.set('weeyar_test', '0');
+    exit.href = exitUrl.href;
+    exit.textContent = 'Exit test mode';
+    exit.style.cssText = 'color:#312400;text-decoration:underline;font-weight:bold';
+    banner.appendChild(exit);
+    document.body.prepend(banner);
+  }
   const menu = document.querySelector('.menu');
   const links = document.querySelector('.links');
 
@@ -177,7 +204,8 @@ document.addEventListener('DOMContentLoaded', () => {
       formData.append('landing_page', storage.getItem('landing_page') || window.location.href);
       formData.append('source_product', storage.getItem('source_product') || 'not_specified');
       formData.append('source_product_page', storage.getItem('source_product_page') || 'not_specified');
-      formData.append('_subject', 'New Weeyar Website Inquiry');
+      formData.append('_subject', window.weeyarTestMode ? '[TEST] Weeyar Website Inquiry' : 'New Weeyar Website Inquiry');
+      formData.append('submission_type', window.weeyarTestMode ? 'test' : 'customer');
       formData.append('_template', 'table');
 
       submitButton.disabled = true;
