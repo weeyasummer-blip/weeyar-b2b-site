@@ -1,282 +1,282 @@
 [
- {
-  "slug": "multivitamin-gummies",
-  "name": "Multivitamin Gummies",
-  "category": "Gummies",
-  "image": "assets/images/catalog/multivitamin-gummies-weeyar.jpg",
-  "summary": "Yellow bear-shaped multivitamin gummies in a 60-count bottle format for B2B projects.",
-  "packaging": "60 gummies per bottle",
-  "features": [
-   "Multivitamin gummy format",
-   "Formula and flavor confirmed by project",
-   "Private-label bottle and carton options",
-   "Sample and OEM / ODM support"
-  ]
- },
- {
-  "slug": "liposomal-vitamin-c-tablets",
-  "name": "Liposomal Vitamin C Tablets",
-  "category": "Capsules",
-  "image": "assets/images/catalog/liposomal-vitamin-c-tablets-weeyar.jpg",
-  "summary": "Tablet-format reference for wholesale, private-label and customized supplement projects.",
-  "packaging": "Bottle format; final count confirmed by project",
-  "features": [
-   "Tablet-format product sourcing",
-   "Private-label packaging discussion",
-   "Specifications confirmed by project",
-   "Sample and OEM / ODM support"
-  ]
- },
- {
-  "slug": "vitamin-b-complex-drops",
-  "name": "Vitamin B Complex Liquid Drops",
-  "category": "Liquid Drops",
-  "image": "assets/images/catalog/vitamin-b-complex-drops.webp",
-  "summary": "60 ml raspberry-flavored liquid format featuring vitamins B12, B6, B1, niacin and folate.",
-  "packaging": "60 ml dropper bottle",
-  "features": [
-   "Multi-vitamin B complex format",
-   "Raspberry flavor positioning",
-   "Private label bottle and carton",
-   "Ready-stock and OEM / ODM support"
-  ]
- },
- {
-  "slug": "liposomal-vitamin-c-drops",
-  "name": "Liposomal Vitamin C Drops",
-  "category": "Liquid Drops",
-  "image": "assets/images/catalog/liposomal-vitamin-c-drops.webp",
-  "summary": "60 ml liposomal vitamin C liquid-drop format for wholesale and private-label projects.",
-  "packaging": "60 ml dropper bottle with carton",
-  "features": [
-   "Liposomal liquid format",
-   "Private label packaging",
-   "Formula and serving details confirmed by project",
-   "Ready-stock and OEM / ODM support"
-  ]
- },
- {
-  "slug": "blood-sugar-blend-capsules",
-  "name": "Blood Sugar Blend Capsules",
-  "category": "Capsules",
-  "image": "assets/images/catalog/blood-sugar-blend.webp",
-  "summary": "60-capsule botanical blend format featuring berberine, cinnamon and complementary ingredients.",
-  "packaging": "60 capsules per bottle",
-  "features": [
-   "Botanical blend positioning",
-   "Bottle and label customization",
-   "Formula documentation by project",
-   "Wholesale and private-label support"
-  ]
- },
- {
-  "slug": "calm-mood-gummies",
-  "name": "Light Mood Gummies",
-  "category": "Gummies",
-  "image": "assets/images/catalog/calm-mood-gummies.webp",
-  "summary": "Mixed berry gummy format for everyday mood and wellness positioning.",
-  "packaging": "60 gummies / bottle",
-  "features": [
-   "Ready-stock format available",
-   "Private label packaging options",
-   "Custom formula support",
-   "COA and specification support"
-  ]
- },
- {
-  "slug": "womens-balance-gummies",
-  "name": "Women's Balance Gummies",
-  "category": "Gummies",
-  "image": "assets/images/catalog/womens-balance-gummies.webp",
-  "summary": "Women's daily wellness gummy in a convenient, brand-ready format.",
-  "packaging": "60 gummies / bottle",
-  "features": [
-   "Consumer-friendly gummy format",
-   "Private label packaging available",
-   "Flavor and formula customization",
-   "Export documentation support"
-  ]
- },
- {
-  "slug": "magnesium-glycinate-gummies",
-  "name": "Magnesium Glycinate Gummies",
-  "category": "Gummies",
-  "image": "assets/images/catalog/magnesium-glycinate-gummies.webp",
-  "summary": "Popular magnesium gummy format with strawberry flavor positioning.",
-  "packaging": "60 gummies / bottle",
-  "features": [
-   "Trending wellness format",
-   "Flavor customization available",
-   "Bottle and carton customization",
-   "Sample support available"
-  ]
- },
- {
-  "slug": "maca-liquid-drops",
-  "name": "Maca Complex Liquid Drops",
-  "category": "Liquid Drops",
-  "image": "assets/images/catalog/maca-liquid-drops.webp",
-  "summary": "Herbal liquid drop format featuring maca and complementary botanicals.",
-  "packaging": "Dropper bottle with carton",
-  "features": [
-   "Convenient liquid format",
-   "Custom label and carton",
-   "Formula options available",
-   "OEM / ODM project support"
-  ]
- },
- {
-  "slug": "milk-thistle-drops",
-  "name": "Milk Thistle Herbal Drops",
-  "category": "Liquid Drops",
-  "image": "assets/images/catalog/milk-thistle-drops.webp",
-  "summary": "Botanical liquid drop format designed for daily wellness ranges.",
-  "packaging": "60 ml dropper bottle",
-  "features": [
-   "Botanical product positioning",
-   "Private label packaging",
-   "Custom bottle and carton",
-   "Batch documentation support"
-  ]
- },
- {
-  "slug": "sleep-spray",
-  "name": "Nighttime Wellness Spray",
-  "category": "Sprays",
-  "image": "assets/images/catalog/sleep-spray.webp",
-  "summary": "Portable oral spray format for nighttime wellness product lines.",
-  "packaging": "30 ml spray bottle with carton",
-  "features": [
-   "Portable spray format",
-   "Private label support",
-   "Custom flavor and formula",
-   "Low-volume sample evaluation"
-  ]
- },
- {
-  "slug": "womens-probiotic",
-  "name": "V-Balance Women's Probiotic",
-  "category": "Capsules",
-  "image": "assets/images/catalog/womens-probiotic.webp",
-  "summary": "Women's probiotic capsule format with bottle and retail carton.",
-  "packaging": "30 capsules / bottle",
-  "features": [
-   "Women's wellness positioning",
-   "Bottle and carton customization",
-   "Private label options",
-   "COA and specification support"
-  ]
- },
- {
-  "slug": "daily-probiotic",
-  "name": "Daily Probiotic Capsules",
-  "category": "Capsules",
-  "image": "assets/images/catalog/daily-probiotic.webp",
-  "summary": "Daily probiotic capsule format for digestive wellness collections.",
-  "packaging": "60 capsules / bottle",
-  "features": [
-   "Flexible capsule count",
-   "Custom label and carton",
-   "Formula development support",
-   "Export-ready documentation"
-  ]
- },
- {
-  "slug": "creatine-hydration",
-  "name": "Creatine Hydration Powder",
-  "category": "Powders",
-  "image": "assets/images/catalog/creatine-hydration.webp",
-  "summary": "Strawberry-flavored sports nutrition powder in a stand-up pouch.",
-  "packaging": "Resealable stand-up pouch",
-  "features": [
-   "Sports nutrition positioning",
-   "Flavor customization",
-   "Pouch artwork and private label",
-   "Sample and bulk production support"
-  ]
- },
- {
-  "slug": "slippery-elm-powder",
-  "name": "Slippery Elm Bark Powder",
-  "category": "Powders",
-  "image": "assets/images/catalog/slippery-elm-powder.webp",
-  "summary": "Traditional botanical powder presented in a resealable pouch.",
-  "packaging": "454 g resealable pouch",
-  "features": [
-   "Single-ingredient powder format",
-   "Custom pouch design",
-   "Private label options",
-   "Specification and COA support"
-  ]
- },
- {
-  "slug": "glutathione-strips",
-  "name": "Glutathione Oral Strips",
-  "category": "Oral Strips",
-  "image": "assets/images/catalog/glutathione-strips.webp",
-  "summary": "Fast, portable oral strip format for modern beauty-wellness ranges.",
-  "packaging": "7 strips / retail box",
-  "features": [
-   "Portable oral strip format",
-   "Custom box and sachet artwork",
-   "Private label available",
-   "OEM / ODM support"
-  ]
- },
- {
-  "slug": "slim-gut-probiotic",
-  "name": "Slim & Gut Probiotic Powder",
-  "category": "Powders",
-  "image": "assets/images/catalog/slim-gut-probiotic.webp",
-  "summary": "Compact probiotic powder format for daily gut wellness positioning.",
-  "packaging": "7-piece retail box",
-  "features": [
-   "Compact powder format",
-   "Custom retail packaging",
-   "Private label services",
-   "Formula and flavor options"
-  ]
- },
- {
-  "slug": "shilajit-gummies",
-  "name": "Himalayan Shilajit Gold Gummies",
-  "category": "Gummies",
-  "image": "assets/images/catalog/shilajit-gummies.webp",
-  "summary": "Premium black-and-gold gummy pouch for vitality product collections.",
-  "packaging": "60 gummies / pouch",
-  "features": [
-   "Premium pouch presentation",
-   "Custom formula options",
-   "Private label packaging",
-   "Ready-stock and OEM pathways"
-  ]
- },
- {
-  "slug": "electrolyte-powder",
-  "name": "Lemonade Electrolyte Drink Mix",
-  "category": "Powders",
-  "image": "assets/images/catalog/electrolyte-powder.webp",
-  "summary": "Lemonade-flavored electrolyte powder for sports and hydration lines.",
-  "packaging": "15 servings / pouch",
-  "features": [
-   "Sports hydration positioning",
-   "Flavor customization",
-   "Private label pouch design",
-   "Sample and production support"
-  ]
- },
- {
-  "slug": "digestive-comfort-drops",
-  "name": "Liposomal Cutting Drops – Mango Dragonfruit",
-  "category": "Liquid Drops",
-  "image": "assets/images/catalog/digestive-comfort-drops.webp",
-  "summary": "Trending 30 ml mango dragonfruit liquid-drop format for private-label wellness product lines.",
-  "packaging": "30 ml dropper bottle with carton",
-  "features": [
-   "Mango dragonfruit flavor positioning",
-   "Private label bottle and carton",
-   "Formula and flavor options available",
-   "Sample and OEM / ODM project support"
-  ]
- }
+  {
+    "slug": "multivitamin-gummies",
+    "name": "Multivitamin Gummies",
+    "category": "Gummies",
+    "image": "assets/images/catalog/multivitamin-gummies-weeyar.jpg",
+    "summary": "Yellow bear-shaped multivitamin gummies in a 60-count bottle format for B2B projects.",
+    "packaging": "60 gummies per bottle",
+    "features": [
+      "Multivitamin gummy format",
+      "Formula and flavor confirmed by project",
+      "Private-label bottle and carton options",
+      "Sample and OEM / ODM support"
+    ]
+  },
+  {
+    "slug": "liposomal-vitamin-c-tablets",
+    "name": "Liposomal Vitamin C Tablets",
+    "category": "Tablets",
+    "image": "assets/images/catalog/liposomal-vitamin-c-tablets-weeyar.jpg",
+    "summary": "Tablet-format reference for wholesale, private-label and customized supplement projects.",
+    "packaging": "Bottle format; final count confirmed by project",
+    "features": [
+      "Tablet-format product sourcing",
+      "Private-label packaging discussion",
+      "Specifications confirmed by project",
+      "Sample and OEM / ODM support"
+    ]
+  },
+  {
+    "slug": "vitamin-b-complex-drops",
+    "name": "Vitamin B Complex Liquid Drops",
+    "category": "Liquid Drops",
+    "image": "assets/images/catalog/vitamin-b-complex-drops.webp",
+    "summary": "60 ml raspberry-flavored liquid format featuring vitamins B12, B6, B1, niacin and folate.",
+    "packaging": "60 ml dropper bottle",
+    "features": [
+      "Multi-vitamin B complex format",
+      "Raspberry flavor positioning",
+      "Private label bottle and carton",
+      "Ready-stock and OEM / ODM support"
+    ]
+  },
+  {
+    "slug": "liposomal-vitamin-c-drops",
+    "name": "Liposomal Vitamin C Drops",
+    "category": "Liquid Drops",
+    "image": "assets/images/catalog/liposomal-vitamin-c-drops.webp",
+    "summary": "60 ml liposomal vitamin C liquid-drop format for wholesale and private-label projects.",
+    "packaging": "60 ml dropper bottle with carton",
+    "features": [
+      "Liposomal liquid format",
+      "Private label packaging",
+      "Formula and serving details confirmed by project",
+      "Ready-stock and OEM / ODM support"
+    ]
+  },
+  {
+    "slug": "blood-sugar-blend-capsules",
+    "name": "Blood Sugar Blend Capsules",
+    "category": "Capsules",
+    "image": "assets/images/catalog/blood-sugar-blend.webp",
+    "summary": "60-capsule botanical blend format featuring berberine, cinnamon and complementary ingredients.",
+    "packaging": "60 capsules per bottle",
+    "features": [
+      "Botanical blend positioning",
+      "Bottle and label customization",
+      "Formula documentation by project",
+      "Wholesale and private-label support"
+    ]
+  },
+  {
+    "slug": "calm-mood-gummies",
+    "name": "Light Mood Gummies",
+    "category": "Gummies",
+    "image": "assets/images/catalog/calm-mood-gummies.webp",
+    "summary": "Mixed berry gummy format for everyday mood and wellness positioning.",
+    "packaging": "60 gummies / bottle",
+    "features": [
+      "Ready-stock format available",
+      "Private label packaging options",
+      "Custom formula support",
+      "COA and specification support"
+    ]
+  },
+  {
+    "slug": "womens-balance-gummies",
+    "name": "Women's Balance Gummies",
+    "category": "Gummies",
+    "image": "assets/images/catalog/womens-balance-gummies.webp",
+    "summary": "Women's daily wellness gummy in a convenient, brand-ready format.",
+    "packaging": "60 gummies / bottle",
+    "features": [
+      "Consumer-friendly gummy format",
+      "Private label packaging available",
+      "Flavor and formula customization",
+      "Export documentation support"
+    ]
+  },
+  {
+    "slug": "magnesium-glycinate-gummies",
+    "name": "Magnesium Glycinate Gummies",
+    "category": "Gummies",
+    "image": "assets/images/catalog/magnesium-glycinate-gummies.webp",
+    "summary": "Popular magnesium gummy format with strawberry flavor positioning.",
+    "packaging": "60 gummies / bottle",
+    "features": [
+      "Trending wellness format",
+      "Flavor customization available",
+      "Bottle and carton customization",
+      "Sample support available"
+    ]
+  },
+  {
+    "slug": "maca-liquid-drops",
+    "name": "Maca Complex Liquid Drops",
+    "category": "Liquid Drops",
+    "image": "assets/images/catalog/maca-liquid-drops.webp",
+    "summary": "Herbal liquid drop format featuring maca and complementary botanicals.",
+    "packaging": "Dropper bottle with carton",
+    "features": [
+      "Convenient liquid format",
+      "Custom label and carton",
+      "Formula options available",
+      "OEM / ODM project support"
+    ]
+  },
+  {
+    "slug": "milk-thistle-drops",
+    "name": "Milk Thistle Herbal Drops",
+    "category": "Liquid Drops",
+    "image": "assets/images/catalog/milk-thistle-drops.webp",
+    "summary": "Botanical liquid drop format designed for daily wellness ranges.",
+    "packaging": "60 ml dropper bottle",
+    "features": [
+      "Botanical product positioning",
+      "Private label packaging",
+      "Custom bottle and carton",
+      "Batch documentation support"
+    ]
+  },
+  {
+    "slug": "sleep-spray",
+    "name": "Nighttime Wellness Spray",
+    "category": "Sprays",
+    "image": "assets/images/catalog/sleep-spray.webp",
+    "summary": "Portable oral spray format for nighttime wellness product lines.",
+    "packaging": "30 ml spray bottle with carton",
+    "features": [
+      "Portable spray format",
+      "Private label support",
+      "Custom flavor and formula",
+      "Low-volume sample evaluation"
+    ]
+  },
+  {
+    "slug": "womens-probiotic",
+    "name": "V-Balance Women's Probiotic",
+    "category": "Capsules",
+    "image": "assets/images/catalog/womens-probiotic.webp",
+    "summary": "Women's probiotic capsule format with bottle and retail carton.",
+    "packaging": "30 capsules / bottle",
+    "features": [
+      "Women's wellness positioning",
+      "Bottle and carton customization",
+      "Private label options",
+      "COA and specification support"
+    ]
+  },
+  {
+    "slug": "daily-probiotic",
+    "name": "Daily Probiotic Capsules",
+    "category": "Capsules",
+    "image": "assets/images/catalog/daily-probiotic.webp",
+    "summary": "Daily probiotic capsule format for digestive wellness collections.",
+    "packaging": "60 capsules / bottle",
+    "features": [
+      "Flexible capsule count",
+      "Custom label and carton",
+      "Formula development support",
+      "Export-ready documentation"
+    ]
+  },
+  {
+    "slug": "creatine-hydration",
+    "name": "Creatine Hydration Powder",
+    "category": "Powders",
+    "image": "assets/images/catalog/creatine-hydration.webp",
+    "summary": "Strawberry-flavored sports nutrition powder in a stand-up pouch.",
+    "packaging": "Resealable stand-up pouch",
+    "features": [
+      "Sports nutrition positioning",
+      "Flavor customization",
+      "Pouch artwork and private label",
+      "Sample and bulk production support"
+    ]
+  },
+  {
+    "slug": "slippery-elm-powder",
+    "name": "Slippery Elm Bark Powder",
+    "category": "Powders",
+    "image": "assets/images/catalog/slippery-elm-powder.webp",
+    "summary": "Traditional botanical powder presented in a resealable pouch.",
+    "packaging": "454 g resealable pouch",
+    "features": [
+      "Single-ingredient powder format",
+      "Custom pouch design",
+      "Private label options",
+      "Specification and COA support"
+    ]
+  },
+  {
+    "slug": "glutathione-strips",
+    "name": "Glutathione Oral Strips",
+    "category": "Oral Strips",
+    "image": "assets/images/catalog/glutathione-strips.webp",
+    "summary": "Fast, portable oral strip format for modern beauty-wellness ranges.",
+    "packaging": "7 strips / retail box",
+    "features": [
+      "Portable oral strip format",
+      "Custom box and sachet artwork",
+      "Private label available",
+      "OEM / ODM support"
+    ]
+  },
+  {
+    "slug": "slim-gut-probiotic",
+    "name": "Slim & Gut Probiotic Powder",
+    "category": "Powders",
+    "image": "assets/images/catalog/slim-gut-probiotic.webp",
+    "summary": "Compact probiotic powder format for daily gut wellness positioning.",
+    "packaging": "7-piece retail box",
+    "features": [
+      "Compact powder format",
+      "Custom retail packaging",
+      "Private label services",
+      "Formula and flavor options"
+    ]
+  },
+  {
+    "slug": "shilajit-gummies",
+    "name": "Himalayan Shilajit Gold Gummies",
+    "category": "Gummies",
+    "image": "assets/images/catalog/shilajit-gummies.webp",
+    "summary": "Premium black-and-gold gummy pouch for vitality product collections.",
+    "packaging": "60 gummies / pouch",
+    "features": [
+      "Premium pouch presentation",
+      "Custom formula options",
+      "Private label packaging",
+      "Ready-stock and OEM pathways"
+    ]
+  },
+  {
+    "slug": "electrolyte-powder",
+    "name": "Lemonade Electrolyte Drink Mix",
+    "category": "Powders",
+    "image": "assets/images/catalog/electrolyte-powder.webp",
+    "summary": "Lemonade-flavored electrolyte powder for sports and hydration lines.",
+    "packaging": "15 servings / pouch",
+    "features": [
+      "Sports hydration positioning",
+      "Flavor customization",
+      "Private label pouch design",
+      "Sample and production support"
+    ]
+  },
+  {
+    "slug": "digestive-comfort-drops",
+    "name": "Liposomal Cutting Drops – Mango Dragonfruit",
+    "category": "Liquid Drops",
+    "image": "assets/images/catalog/digestive-comfort-drops.webp",
+    "summary": "Trending 30 ml mango dragonfruit liquid-drop format for private-label wellness product lines.",
+    "packaging": "30 ml dropper bottle with carton",
+    "features": [
+      "Mango dragonfruit flavor positioning",
+      "Private label bottle and carton",
+      "Formula and flavor options available",
+      "Sample and OEM / ODM project support"
+    ]
+  }
 ]

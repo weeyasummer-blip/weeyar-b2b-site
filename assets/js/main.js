@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     menu.addEventListener('click', () => links.classList.toggle('open'));
   }
 
-  document.querySelectorAll('.filter').forEach((button) => {
+  document.querySelectorAll('.filter[data-f]').forEach((button) => {
     button.addEventListener('click', () => {
       document.querySelectorAll('.filter').forEach((item) => item.classList.remove('active'));
       button.classList.add('active');
@@ -101,6 +101,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const attributionKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
   const query = new URLSearchParams(window.location.search);
+  if (query.get('utm_source')) attributionKeys.forEach(key => storage.removeItem(key));
+  if (!storage.getItem('entry_referrer')) storage.setItem('entry_referrer', document.referrer || 'not_available');
   attributionKeys.forEach((key) => {
     const value = query.get(key);
     if (value) storage.setItem(key, value);
@@ -171,6 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
       attributionKeys.forEach((key) => {
         formData.append(key, storage.getItem(key) || 'direct');
       });
+      formData.append('entry_referrer', storage.getItem('entry_referrer') || 'not_available');
       formData.append('landing_page', storage.getItem('landing_page') || window.location.href);
       formData.append('source_product', storage.getItem('source_product') || 'not_specified');
       formData.append('source_product_page', storage.getItem('source_product_page') || 'not_specified');
