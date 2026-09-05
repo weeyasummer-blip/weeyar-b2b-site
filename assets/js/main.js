@@ -187,9 +187,18 @@ document.addEventListener('DOMContentLoaded', () => {
             target_market: formData.get('Target Market') || 'not_provided',
             source_product: formData.get('source_product') || 'not_specified'
           });
-          window.gtag('event', 'rfq_submit', { form_name: 'contact_inquiry' });
+          window.gtag('event', 'rfq_submit', {
+            form_name: 'contact_inquiry',
+            source_product: formData.get('source_product') || 'not_specified',
+            product_category: formData.get('Product Category') || 'not_selected'
+          });
         }
         inquiryForm.reset();
+        if (productInput && productContext) productInput.value = productContext.slice(0, 160);
+        if (categorySelect && categoryContext) {
+          const option = Array.from(categorySelect.options).find(item => item.value.toLowerCase() === categoryContext.toLowerCase());
+          if (option) categorySelect.value = option.value;
+        }
         if (referenceFileName) referenceFileName.textContent = 'No file selected';
       } catch (error) {
         if (window.gtag) window.gtag('event', 'rfq_error', { form_name: 'contact_inquiry' });
