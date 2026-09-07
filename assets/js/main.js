@@ -1,3 +1,28 @@
+const attributionKey = "weeyar_first_visit_v1";
+let memory = null;
+function captureAttribution() {
+  if (typeof window === "undefined") return null;
+  try {
+    const saved = JSON.parse(window.sessionStorage.getItem(attributionKey) || "null");
+    if (saved && typeof saved.source === "string" && typeof saved.landingPage === "string") memory = saved;
+  } catch (_) {}
+  if (memory) return memory;
+  const url = new URL(window.location.href);
+  let referrer = "";
+  try { const ref = new URL(document.referrer); if (ref.origin !== url.origin) referrer = ref.origin + ref.pathname; } catch (_) {}
+  memory = {
+    source: url.searchParams.get("utm_source") || (referrer ? "external_referral" : "direct_or_unknown"),
+    medium: url.searchParams.get("utm_medium") || (referrer ? "referral" : "none"),
+    campaign: url.searchParams.get("utm_campaign") || "none",
+    content: url.searchParams.get("utm_content") || "none",
+    term: url.searchParams.get("utm_term") || "none",
+    landingPage: url.origin + url.pathname,
+    referrer: referrer || "Direct / unavailable",
+  };
+  try { window.sessionStorage.setItem(attributionKey, JSON.stringify(memory)); } catch (_) {}
+  return memory;
+}
+
 (() => {
   const measurementId = 'G-H3QXK4X1K4';
   const testSetting = new URLSearchParams(window.location.search).get('weeyar_test');
@@ -128,6 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const attributionKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
   const query = new URLSearchParams(window.location.search);
+  const firstVisit = captureAttribution();
   if (query.get('utm_source')) attributionKeys.forEach(key => storage.removeItem(key));
   if (!storage.getItem('entry_referrer')) storage.setItem('entry_referrer', document.referrer || 'not_available');
   attributionKeys.forEach((key) => {
@@ -200,6 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
       attributionKeys.forEach((key) => {
         formData.append(key, storage.getItem(key) || 'direct');
       });
+      if (firstVisit) Object.entries(firstVisit).forEach(([key, value]) => formData.append('first_visit_' + key, value));
       formData.append('entry_referrer', storage.getItem('entry_referrer') || 'not_available');
       formData.append('landing_page', storage.getItem('landing_page') || window.location.href);
       formData.append('source_product', storage.getItem('source_product') || 'not_specified');
