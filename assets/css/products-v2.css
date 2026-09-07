@@ -67,3 +67,8 @@
 .mobile-conversion-bar{display:none}
 @media(max-width:800px){.route-grid,.buyer-checklist-grid{grid-template-columns:1fr}.buyer-checklist-grid{gap:30px}.buyer-inputs{grid-template-columns:1fr}.related-links{grid-template-columns:1fr}}
 @media(max-width:720px){body{padding-bottom:68px}.detail-v2{padding:36px 0}.detail-visual{padding:20px}.detail-visual img{height:330px}.detail-copy h1{font-size:38px}.actions{display:grid;grid-template-columns:1fr}.actions .btn{width:100%}.buyer-decision,.buyer-checklist,.related-paths{padding:48px 0}.mobile-conversion-bar{position:fixed;z-index:90;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:9px 12px max(9px,env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 24px rgba(33,20,58,.12)}.mobile-conversion-bar a{display:flex;align-items:center;justify-content:center;min-height:46px;border-radius:999px;background:#25d366;color:#fff;font-size:14px;font-weight:900}.mobile-conversion-bar a:last-child{background:linear-gradient(135deg,#5b2ee3,#855dff)}.wa{display:none}}
+
+/* Buyer answer cards on category pages */
+.related-links .related-answer{display:grid;gap:7px;border:1px solid var(--line);border-radius:18px;padding:20px;background:#fff}
+.related-links .related-answer b{font-size:16px;line-height:1.35}
+.related-links .related-answer span{color:var(--m);font-size:13px;line-height:1.55}
