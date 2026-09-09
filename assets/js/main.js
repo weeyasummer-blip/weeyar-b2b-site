@@ -52,6 +52,28 @@ function captureAttribution() {
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  // Keep the TikTok profile available in every footer that uses the shared site script.
+  document.querySelectorAll('footer .home-social, footer .about-social, footer .oem-social, footer .insights-social, footer .contact-social, footer .social-links').forEach((social) => {
+    if (social.querySelector('a[href*="tiktok.com/"]')) return;
+    const link = document.createElement('a');
+    link.href = 'https://www.tiktok.com/@weeyar.summer';
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.setAttribute('aria-label', 'TikTok');
+    link.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 3v10.1a4.6 4.6 0 1 1-3.7-4.5v3.1a1.7 1.7 0 1 0 .7 1.4V3h3c.3 2.1 1.5 3.5 3.5 4.1v3.1a8.2 8.2 0 0 1-3.5-1.5V3Z"/></svg>';
+    social.appendChild(link);
+  });
+
+  document.querySelectorAll('footer .nf-social').forEach((social) => {
+    if (social.querySelector('a[href*="tiktok.com/"]')) return;
+    const link = document.createElement('a');
+    link.href = 'https://www.tiktok.com/@weeyar.summer';
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = 'TikTok';
+    social.appendChild(link);
+  });
   // Storage can be unavailable in restricted browser sessions; inquiries must still work.
   const memory = Object.create(null);
   const storage = {
@@ -97,7 +119,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const href = link.getAttribute('href') || '';
     const linkText = link.textContent.trim().replace(/\s+/g, ' ').slice(0, 100);
 
-    if (href.includes('wa.me/')) {
+    if (href.includes('tiktok.com/')) {
+      window.gtag('event', 'social_click', {
+        platform: 'tiktok',
+        link_url: href,
+        page_path: window.location.pathname
+      });
+    } else if (href.includes('wa.me/')) {
       window.gtag('event', 'whatsapp_click', {
         contact_method: 'whatsapp',
         link_text: linkText,
