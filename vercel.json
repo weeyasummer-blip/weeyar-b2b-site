@@ -118,11 +118,6 @@
       "permanent": true
     },
     {
-      "source": "/products/magnesium-glycinate",
-      "destination": "/products",
-      "permanent": true
-    },
-    {
       "source": "/products/melatonin-complex",
       "destination": "/products",
       "permanent": true
