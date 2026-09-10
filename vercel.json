@@ -113,11 +113,6 @@
       "permanent": true
     },
     {
-      "source": "/products/creatine-gummies",
-      "destination": "/products",
-      "permanent": true
-    },
-    {
       "source": "/products/melatonin-complex",
       "destination": "/products",
       "permanent": true
