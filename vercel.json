@@ -143,11 +143,6 @@
       "permanent": true
     },
     {
-      "source": "/products/vitamin-d3-k2",
-      "destination": "/products",
-      "permanent": true
-    },
-    {
       "source": "/product-detail",
       "has": [
         {
