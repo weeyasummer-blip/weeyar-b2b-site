@@ -128,11 +128,6 @@
       "permanent": true
     },
     {
-      "source": "/products/shilajit-resin",
-      "destination": "/products",
-      "permanent": true
-    },
-    {
       "source": "/products/turmeric-curcumin",
       "destination": "/products",
       "permanent": true
