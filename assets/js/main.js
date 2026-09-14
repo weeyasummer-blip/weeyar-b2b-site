@@ -202,6 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   const requestedProduct = query.get('product');
   const requestedCategory = query.get('category');
+  const requestedDocumentation = query.get('request');
   if (requestedProduct) {
     if (requestedProduct !== storage.getItem('source_product')) {
       storage.removeItem('source_product_page');
@@ -213,6 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   if (requestedCategory) storage.setItem('source_product_category', requestedCategory);
+  if (requestedDocumentation) storage.setItem('documentation_request', requestedDocumentation);
 
   const inquiryForm = document.querySelector('#inquiry');
   if (inquiryForm) {
@@ -220,13 +222,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const productField = inquiryForm.querySelector('#product-context-field');
     const productNote = inquiryForm.querySelector('#product-context-note');
     const categorySelect = inquiryForm.querySelector('#contact-category');
+    const documentationSelect = inquiryForm.querySelector('#contact-documentation');
     const productContext = requestedProduct || storage.getItem('source_product');
     const categoryContext = requestedCategory || storage.getItem('source_product_category');
+    const documentationContext = requestedDocumentation || storage.getItem('documentation_request');
 
     if (productContext && productInput && productField) {
       productInput.value = productContext.slice(0, 160);
       productField.hidden = false;
       if (productNote) productNote.classList.add('show');
+    }
+    if (documentationContext && documentationSelect) {
+      const matchingDocument = Array.from(documentationSelect.options).find(
+        (option) => option.value.toLowerCase() === documentationContext.toLowerCase()
+      );
+      if (matchingDocument) documentationSelect.value = matchingDocument.value;
+      const details = inquiryForm.querySelector('#contact-details');
+      if (details) details.placeholder = 'Tell us the product, target market, estimated quantity and documents your team needs to review.';
     }
     if (categoryContext && categorySelect) {
       const matchingOption = Array.from(categorySelect.options).find(
@@ -288,6 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
             form_name: 'contact_inquiry',
             product_category: formData.get('Product Category') || 'not_selected',
             target_market: formData.get('Target Market') || 'not_provided',
+            documentation_request: formData.get('Documentation Request') || 'not_selected',
             source_product: formData.get('source_product') || 'not_specified'
           });
           window.gtag('event', 'rfq_submit', {
@@ -301,6 +314,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (categorySelect && categoryContext) {
           const option = Array.from(categorySelect.options).find(item => item.value.toLowerCase() === categoryContext.toLowerCase());
           if (option) categorySelect.value = option.value;
+        }
+        if (documentationSelect && documentationContext) {
+          const docOption = Array.from(documentationSelect.options).find(item => item.value.toLowerCase() === documentationContext.toLowerCase());
+          if (docOption) documentationSelect.value = docOption.value;
         }
         if (referenceFileName) referenceFileName.textContent = 'No file selected';
       } catch (error) {

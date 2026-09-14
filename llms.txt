@@ -7,6 +7,7 @@
 - Products: https://weeyar.com/products
 - OEM / ODM: https://weeyar.com/oem
 - Supplier facts: https://weeyar.com/supplier-facts
+- Quality & documentation: https://weeyar.com/quality-documentation
 - Insights: https://weeyar.com/insights
 - Contact: https://weeyar.com/contact
 
@@ -59,6 +60,12 @@
 - Maca Complex Liquid Drops: https://weeyar.com/products/maca-liquid-drops
 - Milk Thistle Herbal Drops: https://weeyar.com/products/milk-thistle-drops
 - Liposomal Cutting Drops: https://weeyar.com/products/digestive-comfort-drops
+
+## Quality and documentation
+- Quality & documentation support: https://weeyar.com/quality-documentation
+- Buyers may request current product specifications, available quality or test documents, packaging information and relevant manufacturing-partner qualification details.
+- Facility certificates are held by the selected manufacturing partner. Validity, scope and applicability are confirmed for the selected product, facility and destination market.
+- Representative or current available files may be reviewed for eligible projects; batch-specific documents relate to the applicable lot and production stage.
 
 ## Buyer resources
 - Private Label Probiotic Capsules Sourcing Guide: https://weeyar.com/insights/private-label-probiotic-capsules-sourcing-guide
