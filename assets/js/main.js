@@ -3,331 +3,470 @@ let memory = null;
 function captureAttribution() {
   if (typeof window === "undefined") return null;
   try {
-    const saved = JSON.parse(window.sessionStorage.getItem(attributionKey) || "null");
-    if (saved && typeof saved.source === "string" && typeof saved.landingPage === "string") memory = saved;
+    const saved = JSON.parse(
+      window.sessionStorage.getItem(attributionKey) || "null",
+    );
+    if (
+      saved &&
+      typeof saved.source === "string" &&
+      typeof saved.landingPage === "string"
+    )
+      memory = saved;
   } catch (_) {}
   if (memory) return memory;
   const url = new URL(window.location.href);
   let referrer = "";
-  try { const ref = new URL(document.referrer); if (ref.origin !== url.origin) referrer = ref.origin + ref.pathname; } catch (_) {}
+  try {
+    const ref = new URL(document.referrer);
+    if (ref.origin !== url.origin) referrer = ref.origin + ref.pathname;
+  } catch (_) {}
   memory = {
-    source: url.searchParams.get("utm_source") || (referrer ? "external_referral" : "direct_or_unknown"),
-    medium: url.searchParams.get("utm_medium") || (referrer ? "referral" : "none"),
+    source:
+      url.searchParams.get("utm_source") ||
+      (referrer ? "external_referral" : "direct_or_unknown"),
+    medium:
+      url.searchParams.get("utm_medium") || (referrer ? "referral" : "none"),
     campaign: url.searchParams.get("utm_campaign") || "none",
     content: url.searchParams.get("utm_content") || "none",
     term: url.searchParams.get("utm_term") || "none",
     landingPage: url.origin + url.pathname,
     referrer: referrer || "Direct / unavailable",
   };
-  try { window.sessionStorage.setItem(attributionKey, JSON.stringify(memory)); } catch (_) {}
+  try {
+    window.sessionStorage.setItem(attributionKey, JSON.stringify(memory));
+  } catch (_) {}
   return memory;
 }
 
 (() => {
-  const measurementId = 'G-H3QXK4X1K4';
-  const testSetting = new URLSearchParams(window.location.search).get('weeyar_test');
+  const measurementId = "G-H3QXK4X1K4";
+  const testSetting = new URLSearchParams(window.location.search).get(
+    "weeyar_test",
+  );
   let storedTest = false;
   try {
-    if (testSetting === '1') window.sessionStorage.setItem('weeyar_test', '1');
-    if (testSetting === '0') window.sessionStorage.removeItem('weeyar_test');
-    storedTest = window.sessionStorage.getItem('weeyar_test') === '1';
+    if (testSetting === "1") window.sessionStorage.setItem("weeyar_test", "1");
+    if (testSetting === "0") window.sessionStorage.removeItem("weeyar_test");
+    storedTest = window.sessionStorage.getItem("weeyar_test") === "1";
   } catch (_) {}
-  window.weeyarTestMode = testSetting === '1' || (testSetting !== '0' && storedTest);
-  window['ga-disable-' + measurementId] = window.weeyarTestMode;
+  window.weeyarTestMode =
+    testSetting === "1" || (testSetting !== "0" && storedTest);
+  window["ga-disable-" + measurementId] = window.weeyarTestMode;
   if (window.weeyarTestMode) {
     window.gtag = function () {};
     return;
   }
   window.dataLayer = window.dataLayer || [];
-  window.gtag = window.gtag || function gtag() {
-    window.dataLayer.push(arguments);
-  };
-  window.gtag('js', new Date());
-  window.gtag('config', measurementId, { send_page_view: true });
+  window.gtag =
+    window.gtag ||
+    function gtag() {
+      window.dataLayer.push(arguments);
+    };
+  window.gtag("js", new Date());
+  window.gtag("config", measurementId, { send_page_view: true });
 
-  const analyticsScript = document.createElement('script');
+  const analyticsScript = document.createElement("script");
   analyticsScript.async = true;
   analyticsScript.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
   document.head.appendChild(analyticsScript);
 })();
 
-document.addEventListener('DOMContentLoaded', () => {
-
+document.addEventListener("DOMContentLoaded", () => {
   // Keep the TikTok profile available in every footer that uses the shared site script.
-  document.querySelectorAll('footer .home-social, footer .about-social, footer .oem-social, footer .insights-social, footer .contact-social, footer .social-links').forEach((social) => {
-    if (social.querySelector('a[href*="tiktok.com/"]')) return;
-    const link = document.createElement('a');
-    link.href = 'https://www.tiktok.com/@weeyar.summer';
-    link.target = '_blank';
-    link.rel = 'noopener';
-    link.setAttribute('aria-label', 'TikTok');
-    link.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 3v10.1a4.6 4.6 0 1 1-3.7-4.5v3.1a1.7 1.7 0 1 0 .7 1.4V3h3c.3 2.1 1.5 3.5 3.5 4.1v3.1a8.2 8.2 0 0 1-3.5-1.5V3Z"/></svg>';
-    social.appendChild(link);
-  });
+  document
+    .querySelectorAll(
+      "footer .home-social, footer .about-social, footer .oem-social, footer .insights-social, footer .contact-social, footer .social-links",
+    )
+    .forEach((social) => {
+      if (social.querySelector('a[href*="tiktok.com/"]')) return;
+      const link = document.createElement("a");
+      link.href = "https://www.tiktok.com/@weeyar.summer";
+      link.target = "_blank";
+      link.rel = "noopener";
+      link.setAttribute("aria-label", "TikTok");
+      link.innerHTML =
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 3v10.1a4.6 4.6 0 1 1-3.7-4.5v3.1a1.7 1.7 0 1 0 .7 1.4V3h3c.3 2.1 1.5 3.5 3.5 4.1v3.1a8.2 8.2 0 0 1-3.5-1.5V3Z"/></svg>';
+      social.appendChild(link);
+    });
 
-  document.querySelectorAll('footer .nf-social').forEach((social) => {
+  document.querySelectorAll("footer .nf-social").forEach((social) => {
     if (social.querySelector('a[href*="tiktok.com/"]')) return;
-    const link = document.createElement('a');
-    link.href = 'https://www.tiktok.com/@weeyar.summer';
-    link.target = '_blank';
-    link.rel = 'noopener';
-    link.textContent = 'TikTok';
+    const link = document.createElement("a");
+    link.href = "https://www.tiktok.com/@weeyar.summer";
+    link.target = "_blank";
+    link.rel = "noopener";
+    link.textContent = "TikTok";
     social.appendChild(link);
   });
   // Storage can be unavailable in restricted browser sessions; inquiries must still work.
   const memory = Object.create(null);
   const storage = {
-    getItem(key) { try { return window.sessionStorage.getItem(key) || memory[key] || null; } catch (_) { return memory[key] || null; } },
-    setItem(key, value) { memory[key] = String(value); try { window.sessionStorage.setItem(key, value); } catch (_) {} },
-    removeItem(key) { delete memory[key]; try { window.sessionStorage.removeItem(key); } catch (_) {} }
+    getItem(key) {
+      try {
+        return window.sessionStorage.getItem(key) || memory[key] || null;
+      } catch (_) {
+        return memory[key] || null;
+      }
+    },
+    setItem(key, value) {
+      memory[key] = String(value);
+      try {
+        window.sessionStorage.setItem(key, value);
+      } catch (_) {}
+    },
+    removeItem(key) {
+      delete memory[key];
+      try {
+        window.sessionStorage.removeItem(key);
+      } catch (_) {}
+    },
   };
   if (window.weeyarTestMode) {
-    const banner = document.createElement('div');
-    banner.setAttribute('role', 'status');
-    banner.style.cssText = 'padding:12px 16px;background:#fff4cc;color:#312400;font:14px/1.5 Arial,sans-serif;overflow-wrap:anywhere';
-    banner.textContent = 'Test mode: analytics are disabled for this tab. Form submissions still send a real email marked TEST. ';
-    const exit = document.createElement('a');
+    const banner = document.createElement("div");
+    banner.setAttribute("role", "status");
+    banner.style.cssText =
+      "padding:12px 16px;background:#fff4cc;color:#312400;font:14px/1.5 Arial,sans-serif;overflow-wrap:anywhere";
+    banner.textContent =
+      "Test mode: analytics are disabled for this tab. Form submissions still send a real email marked TEST. ";
+    const exit = document.createElement("a");
     const exitUrl = new URL(window.location.href);
-    exitUrl.searchParams.set('weeyar_test', '0');
+    exitUrl.searchParams.set("weeyar_test", "0");
     exit.href = exitUrl.href;
-    exit.textContent = 'Exit test mode';
-    exit.style.cssText = 'color:#312400;text-decoration:underline;font-weight:bold';
+    exit.textContent = "Exit test mode";
+    exit.style.cssText =
+      "color:#312400;text-decoration:underline;font-weight:bold";
     banner.appendChild(exit);
     document.body.prepend(banner);
   }
-  const menu = document.querySelector('.menu');
-  const links = document.querySelector('.links');
+  const menu = document.querySelector(".menu");
+  const links = document.querySelector(".links");
 
   if (menu && links) {
-    menu.addEventListener('click', () => links.classList.toggle('open'));
+    menu.addEventListener("click", () => links.classList.toggle("open"));
   }
 
-  document.querySelectorAll('.filter[data-f]').forEach((button) => {
-    button.addEventListener('click', () => {
-      document.querySelectorAll('.filter').forEach((item) => item.classList.remove('active'));
-      button.classList.add('active');
-      document.querySelectorAll('.product').forEach((card) => {
-        card.style.display = button.dataset.f === 'all' || card.dataset.c === button.dataset.f ? 'block' : 'none';
+  document.querySelectorAll(".filter[data-f]").forEach((button) => {
+    button.addEventListener("click", () => {
+      document
+        .querySelectorAll(".filter")
+        .forEach((item) => item.classList.remove("active"));
+      button.classList.add("active");
+      document.querySelectorAll(".product").forEach((card) => {
+        card.style.display =
+          button.dataset.f === "all" || card.dataset.c === button.dataset.f
+            ? "block"
+            : "none";
       });
     });
   });
 
-  document.addEventListener('click', (event) => {
-    const link = event.target.closest('a');
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("a");
     if (!link || !window.gtag) return;
 
-    const href = link.getAttribute('href') || '';
-    const linkText = link.textContent.trim().replace(/\s+/g, ' ').slice(0, 100);
+    const href = link.getAttribute("href") || "";
+    const linkText = link.textContent.trim().replace(/\s+/g, " ").slice(0, 100);
 
-    if (href.includes('tiktok.com/')) {
-      window.gtag('event', 'social_click', {
-        platform: 'tiktok',
+    if (href.includes("tiktok.com/")) {
+      window.gtag("event", "social_click", {
+        platform: "tiktok",
         link_url: href,
-        page_path: window.location.pathname
+        page_path: window.location.pathname,
       });
-    } else if (href.includes('wa.me/')) {
-      window.gtag('event', 'whatsapp_click', {
-        contact_method: 'whatsapp',
+    } else if (href.includes("wa.me/")) {
+      window.gtag("event", "whatsapp_click", {
+        contact_method: "whatsapp",
         link_text: linkText,
-        page_path: window.location.pathname
+        page_path: window.location.pathname,
       });
-    } else if (href.startsWith('mailto:')) {
-      window.gtag('event', 'email_click', {
-        contact_method: 'email',
+    } else if (href.startsWith("mailto:")) {
+      window.gtag("event", "email_click", {
+        contact_method: "email",
         link_text: linkText,
-        page_path: window.location.pathname
+        page_path: window.location.pathname,
       });
-    } else if (href.includes('Weeyar-B2B-Supplement-Buyer-Checklist.pdf')) {
-      window.gtag('event', 'checklist_download', {
-        file_name: href.split('/').pop(),
+    } else if (href.includes("Weeyar-B2B-Supplement-Buyer-Checklist.pdf")) {
+      window.gtag("event", "checklist_download", {
+        file_name: href.split("/").pop(),
         link_text: linkText,
-        page_path: window.location.pathname
+        page_path: window.location.pathname,
       });
-    } else if (href.includes('/downloads/') || href.endsWith('.pdf')) {
-      window.gtag('event', 'catalog_download', {
-        file_name: href.split('/').pop(),
+    } else if (href.includes("/downloads/") || href.endsWith(".pdf")) {
+      window.gtag("event", "catalog_download", {
+        file_name: href.split("/").pop(),
         link_text: linkText,
-        page_path: window.location.pathname
+        page_path: window.location.pathname,
       });
-    } else if (href.includes('product-detail.html') || /(?:^|\/)products\//.test(href)) {
-      window.gtag('event', 'product_detail_click', {
-        link_text: linkText,
-        link_url: href,
-        page_path: window.location.pathname
-      });
-    } else if (href.includes('/categories/') || href.startsWith('categories/')) {
-      window.gtag('event', 'product_category_click', {
+    } else if (
+      href.includes("product-detail.html") ||
+      /(?:^|\/)products\//.test(href)
+    ) {
+      window.gtag("event", "product_detail_click", {
         link_text: linkText,
         link_url: href,
-        page_path: window.location.pathname
+        page_path: window.location.pathname,
       });
-    } else if (/(?:^|\/)contact(?:\.html)?(?:[?#]|$)/.test(href) || href === '#quote') {
-      window.gtag('event', 'quote_click', {
+    } else if (
+      href.includes("/categories/") ||
+      href.startsWith("categories/")
+    ) {
+      window.gtag("event", "product_category_click", {
         link_text: linkText,
-        page_path: window.location.pathname
+        link_url: href,
+        page_path: window.location.pathname,
+      });
+    } else if (
+      /(?:^|\/)contact(?:\.html)?(?:[?#]|$)/.test(href) ||
+      href === "#quote"
+    ) {
+      window.gtag("event", "quote_click", {
+        link_text: linkText,
+        page_path: window.location.pathname,
       });
     }
   });
 
-  const referenceFile = document.querySelector('#contact-file');
-  const referenceFileName = document.querySelector('#contact-file-name');
+  // Turn generic WhatsApp links into useful, page-aware conversations.
+  // Existing product-specific messages are preserved.
+  document
+    .querySelectorAll('a[href^="https://wa.me/8613802837662"]')
+    .forEach((link) => {
+      const url = new URL(link.href);
+      if (url.searchParams.get("text")) return;
+      const pageProduct = document.querySelector(".detail-copy h1");
+      const message = pageProduct
+        ? `Hello Weeyar, I am interested in ${pageProduct.textContent.trim()}. Please send the current specification, MOQ, sample and private-label options.`
+        : "Hello Weeyar, I found you through weeyar.com. Please help me choose a dietary supplement product and send current product, MOQ and private-label information.";
+      url.searchParams.set("text", message);
+      link.href = url.toString();
+    });
+
+  const referenceFile = document.querySelector("#contact-file");
+  const referenceFileName = document.querySelector("#contact-file-name");
   if (referenceFile && referenceFileName) {
-    referenceFile.addEventListener('change', () => {
-      referenceFileName.textContent = referenceFile.files && referenceFile.files[0]
-        ? referenceFile.files[0].name
-        : 'No file selected';
+    referenceFile.addEventListener("change", () => {
+      referenceFileName.textContent =
+        referenceFile.files && referenceFile.files[0]
+          ? referenceFile.files[0].name
+          : "No file selected";
     });
   }
 
-  const attributionKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+  const attributionKeys = [
+    "utm_source",
+    "utm_medium",
+    "utm_campaign",
+    "utm_content",
+    "utm_term",
+  ];
   const query = new URLSearchParams(window.location.search);
   const firstVisit = captureAttribution();
-  if (query.get('utm_source')) attributionKeys.forEach(key => storage.removeItem(key));
-  if (!storage.getItem('entry_referrer')) storage.setItem('entry_referrer', document.referrer || 'not_available');
+  if (query.get("utm_source"))
+    attributionKeys.forEach((key) => storage.removeItem(key));
+  if (!storage.getItem("entry_referrer"))
+    storage.setItem("entry_referrer", document.referrer || "not_available");
   attributionKeys.forEach((key) => {
     const value = query.get(key);
     if (value) storage.setItem(key, value);
   });
-  if (!storage.getItem('landing_page')) {
-    storage.setItem('landing_page', window.location.href);
+  if (!storage.getItem("landing_page")) {
+    storage.setItem("landing_page", window.location.href);
   }
 
-  const productHeading = document.querySelector('.detail-copy h1');
+  const productHeading = document.querySelector(".detail-copy h1");
   if (/^\/products\//.test(window.location.pathname) && productHeading) {
-    storage.setItem('source_product', productHeading.textContent.trim());
-    storage.setItem('source_product_page', window.location.href);
-    const categoryLabel = document.querySelector('.detail-copy .eyebrow');
-    if (categoryLabel) storage.setItem('source_product_category', categoryLabel.textContent.trim());
-    else storage.removeItem('source_product_category');
+    storage.setItem("source_product", productHeading.textContent.trim());
+    storage.setItem("source_product_page", window.location.href);
+    const categoryLabel = document.querySelector(".detail-copy .eyebrow");
+    if (categoryLabel)
+      storage.setItem(
+        "source_product_category",
+        categoryLabel.textContent.trim(),
+      );
+    else storage.removeItem("source_product_category");
   }
-  const requestedProduct = query.get('product');
-  const requestedCategory = query.get('category');
-  const requestedDocumentation = query.get('request');
+  const requestedProduct = query.get("product");
+  const requestedCategory = query.get("category");
+  const requestedDocumentation = query.get("request");
   if (requestedProduct) {
-    if (requestedProduct !== storage.getItem('source_product')) {
-      storage.removeItem('source_product_page');
-      storage.removeItem('source_product_category');
+    if (requestedProduct !== storage.getItem("source_product")) {
+      storage.removeItem("source_product_page");
+      storage.removeItem("source_product_category");
     }
-    storage.setItem('source_product', requestedProduct);
-    if (!storage.getItem('source_product_page') && document.referrer) {
-      storage.setItem('source_product_page', document.referrer);
+    storage.setItem("source_product", requestedProduct);
+    if (!storage.getItem("source_product_page") && document.referrer) {
+      storage.setItem("source_product_page", document.referrer);
     }
   }
-  if (requestedCategory) storage.setItem('source_product_category', requestedCategory);
-  if (requestedDocumentation) storage.setItem('documentation_request', requestedDocumentation);
+  if (requestedCategory)
+    storage.setItem("source_product_category", requestedCategory);
+  if (requestedDocumentation)
+    storage.setItem("documentation_request", requestedDocumentation);
 
-  const inquiryForm = document.querySelector('#inquiry');
+  const inquiryForm = document.querySelector("#inquiry");
   if (inquiryForm) {
-    const productInput = inquiryForm.querySelector('#contact-product');
-    const productField = inquiryForm.querySelector('#product-context-field');
-    const productNote = inquiryForm.querySelector('#product-context-note');
-    const categorySelect = inquiryForm.querySelector('#contact-category');
-    const documentationSelect = inquiryForm.querySelector('#contact-documentation');
-    const productContext = requestedProduct || storage.getItem('source_product');
-    const categoryContext = requestedCategory || storage.getItem('source_product_category');
-    const documentationContext = requestedDocumentation || storage.getItem('documentation_request');
+    const productInput = inquiryForm.querySelector("#contact-product");
+    const productField = inquiryForm.querySelector("#product-context-field");
+    const productNote = inquiryForm.querySelector("#product-context-note");
+    const categorySelect = inquiryForm.querySelector("#contact-category");
+    const documentationSelect = inquiryForm.querySelector(
+      "#contact-documentation",
+    );
+    const productContext =
+      requestedProduct || storage.getItem("source_product");
+    const categoryContext =
+      requestedCategory || storage.getItem("source_product_category");
+    const documentationContext =
+      requestedDocumentation || storage.getItem("documentation_request");
 
     if (productContext && productInput && productField) {
       productInput.value = productContext.slice(0, 160);
       productField.hidden = false;
-      if (productNote) productNote.classList.add('show');
+      if (productNote) productNote.classList.add("show");
     }
     if (documentationContext && documentationSelect) {
       const matchingDocument = Array.from(documentationSelect.options).find(
-        (option) => option.value.toLowerCase() === documentationContext.toLowerCase()
+        (option) =>
+          option.value.toLowerCase() === documentationContext.toLowerCase(),
       );
       if (matchingDocument) documentationSelect.value = matchingDocument.value;
-      const details = inquiryForm.querySelector('#contact-details');
-      if (details) details.placeholder = 'Tell us the product, target market, estimated quantity and documents your team needs to review.';
+      const details = inquiryForm.querySelector("#contact-details");
+      if (details)
+        details.placeholder =
+          "Tell us the product, target market, estimated quantity and documents your team needs to review.";
     }
     if (categoryContext && categorySelect) {
       const matchingOption = Array.from(categorySelect.options).find(
-        (option) => option.value.toLowerCase() === categoryContext.toLowerCase()
+        (option) =>
+          option.value.toLowerCase() === categoryContext.toLowerCase(),
       );
       if (matchingOption) categorySelect.value = matchingOption.value;
     }
 
-    const supplyExperience = document.querySelector('.response span');
-    if (supplyExperience) supplyExperience.textContent = 'Dietary supplement supply experience';
-    const note = inquiryForm.querySelector('.file-note');
-    if (note) note.textContent = 'Images, PDF, Word and Excel files are accepted.';
+    const supplyExperience = document.querySelector(".response span");
+    if (supplyExperience)
+      supplyExperience.textContent = "Dietary supplement supply experience";
+    const note = inquiryForm.querySelector(".file-note");
+    if (note)
+      note.textContent = "Images, PDF, Word and Excel files are accepted.";
 
-    const status = document.createElement('div');
-    status.className = 'form-status';
-    status.setAttribute('role', 'status');
-    status.setAttribute('aria-live', 'polite');
-    inquiryForm.querySelector('.submit').before(status);
+    const status = document.createElement("div");
+    status.className = "form-status";
+    status.setAttribute("role", "status");
+    status.setAttribute("aria-live", "polite");
+    inquiryForm.querySelector(".submit").before(status);
 
-    inquiryForm.addEventListener('submit', async (event) => {
+    inquiryForm.addEventListener("submit", async (event) => {
       event.preventDefault();
-      const submitButton = inquiryForm.querySelector('.submit');
+      const submitButton = inquiryForm.querySelector(".submit");
       if (submitButton.disabled) return;
       const formData = new FormData(inquiryForm);
       attributionKeys.forEach((key) => {
-        formData.append(key, storage.getItem(key) || 'direct');
+        formData.append(key, storage.getItem(key) || "direct");
       });
-      if (firstVisit) Object.entries(firstVisit).forEach(([key, value]) => formData.append('first_visit_' + key, value));
-      formData.append('entry_referrer', storage.getItem('entry_referrer') || 'not_available');
-      formData.append('landing_page', storage.getItem('landing_page') || window.location.href);
-      formData.append('source_product', storage.getItem('source_product') || 'not_specified');
-      formData.append('source_product_page', storage.getItem('source_product_page') || 'not_specified');
-      formData.append('_subject', window.weeyarTestMode ? '[TEST] Weeyar Website Inquiry' : 'New Weeyar Website Inquiry');
-      formData.append('submission_type', window.weeyarTestMode ? 'test' : 'customer');
-      formData.append('_template', 'table');
+      if (firstVisit)
+        Object.entries(firstVisit).forEach(([key, value]) =>
+          formData.append("first_visit_" + key, value),
+        );
+      formData.append(
+        "entry_referrer",
+        storage.getItem("entry_referrer") || "not_available",
+      );
+      formData.append(
+        "landing_page",
+        storage.getItem("landing_page") || window.location.href,
+      );
+      formData.append(
+        "source_product",
+        storage.getItem("source_product") || "not_specified",
+      );
+      formData.append(
+        "source_product_page",
+        storage.getItem("source_product_page") || "not_specified",
+      );
+      formData.append(
+        "_subject",
+        window.weeyarTestMode
+          ? "[TEST] Weeyar Website Inquiry"
+          : "New Weeyar Website Inquiry",
+      );
+      formData.append(
+        "submission_type",
+        window.weeyarTestMode ? "test" : "customer",
+      );
+      formData.append("_template", "table");
 
       submitButton.disabled = true;
-      submitButton.textContent = 'Sending…';
-      status.className = 'form-status';
-      status.textContent = '';
+      submitButton.textContent = "Sending…";
+      status.className = "form-status";
+      status.textContent = "";
 
       const controller = new AbortController();
       const timeout = window.setTimeout(() => controller.abort(), 20000);
       try {
-        const response = await fetch('https://formsubmit.co/ajax/summer@weeyar.com', {
-          method: 'POST',
-          signal: controller.signal,
-          body: formData,
-          headers: { Accept: 'application/json' }
-        });
-        if (!response.ok) throw new Error('Submission failed');
+        const response = await fetch(
+          "https://formsubmit.co/ajax/summer@weeyar.com",
+          {
+            method: "POST",
+            signal: controller.signal,
+            body: formData,
+            headers: { Accept: "application/json" },
+          },
+        );
+        if (!response.ok) throw new Error("Submission failed");
         const result = await response.json();
-        if (result.success !== true && result.success !== 'true') throw new Error('Submission not accepted');
+        if (result.success !== true && result.success !== "true")
+          throw new Error("Submission not accepted");
 
-        status.className = 'form-status show success';
-        status.textContent = 'Thank you. Your inquiry has been sent successfully. We will contact you shortly.';
+        status.className = "form-status show success";
+        status.textContent =
+          "Thank you. Your inquiry has been sent successfully. We will contact you shortly.";
         if (window.gtag) {
-          window.gtag('event', 'generate_lead', {
-            form_name: 'contact_inquiry',
-            product_category: formData.get('Product Category') || 'not_selected',
-            target_market: formData.get('Target Market') || 'not_provided',
-            documentation_request: formData.get('Documentation Request') || 'not_selected',
-            source_product: formData.get('source_product') || 'not_specified'
+          window.gtag("event", "generate_lead", {
+            form_name: "contact_inquiry",
+            product_category:
+              formData.get("Product Category") || "not_selected",
+            target_market: formData.get("Target Market") || "not_provided",
+            documentation_request:
+              formData.get("Documentation Request") || "not_selected",
+            source_product: formData.get("source_product") || "not_specified",
           });
-          window.gtag('event', 'rfq_submit', {
-            form_name: 'contact_inquiry',
-            source_product: formData.get('source_product') || 'not_specified',
-            product_category: formData.get('Product Category') || 'not_selected'
+          window.gtag("event", "rfq_submit", {
+            form_name: "contact_inquiry",
+            source_product: formData.get("source_product") || "not_specified",
+            product_category:
+              formData.get("Product Category") || "not_selected",
           });
         }
         inquiryForm.reset();
-        if (productInput && productContext) productInput.value = productContext.slice(0, 160);
+        if (productInput && productContext)
+          productInput.value = productContext.slice(0, 160);
         if (categorySelect && categoryContext) {
-          const option = Array.from(categorySelect.options).find(item => item.value.toLowerCase() === categoryContext.toLowerCase());
+          const option = Array.from(categorySelect.options).find(
+            (item) =>
+              item.value.toLowerCase() === categoryContext.toLowerCase(),
+          );
           if (option) categorySelect.value = option.value;
         }
         if (documentationSelect && documentationContext) {
-          const docOption = Array.from(documentationSelect.options).find(item => item.value.toLowerCase() === documentationContext.toLowerCase());
+          const docOption = Array.from(documentationSelect.options).find(
+            (item) =>
+              item.value.toLowerCase() === documentationContext.toLowerCase(),
+          );
           if (docOption) documentationSelect.value = docOption.value;
         }
-        if (referenceFileName) referenceFileName.textContent = 'No file selected';
+        if (referenceFileName)
+          referenceFileName.textContent = "No file selected";
       } catch (error) {
-        if (window.gtag) window.gtag('event', 'rfq_error', { form_name: 'contact_inquiry' });
-        status.className = 'form-status show error';
-        status.innerHTML = 'We could not confirm your submission. Your details are still here. If you have not received a reply, please email <a href="mailto:summer@weeyar.com">summer@weeyar.com</a> or <a href="https://wa.me/8613802837662" target="_blank" rel="noopener">contact us on WhatsApp</a>.';
+        if (window.gtag)
+          window.gtag("event", "rfq_error", { form_name: "contact_inquiry" });
+        status.className = "form-status show error";
+        status.innerHTML =
+          'We could not confirm your submission. Your details are still here. If you have not received a reply, please email <a href="mailto:summer@weeyar.com">summer@weeyar.com</a> or <a href="https://wa.me/8613802837662" target="_blank" rel="noopener">contact us on WhatsApp</a>.';
       } finally {
         window.clearTimeout(timeout);
         submitButton.disabled = false;
-        submitButton.textContent = 'Send Inquiry →';
+        submitButton.textContent = "Send Inquiry →";
       }
     });
   }
