@@ -98,11 +98,6 @@
       "permanent": true
     },
     {
-      "source": "/products/apple-cider-vinegar",
-      "destination": "/products",
-      "permanent": true
-    },
-    {
       "source": "/products/beetroot-supplement",
       "destination": "/products",
       "permanent": true
@@ -114,16 +109,6 @@
     },
     {
       "source": "/products/collagen-peptides",
-      "destination": "/products",
-      "permanent": true
-    },
-    {
-      "source": "/products/melatonin-complex",
-      "destination": "/products",
-      "permanent": true
-    },
-    {
-      "source": "/products/omega-3-fish-oil",
       "destination": "/products",
       "permanent": true
     },
