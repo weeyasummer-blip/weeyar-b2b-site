@@ -228,18 +228,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Turn generic WhatsApp links into useful, page-aware conversations.
   // Existing product-specific messages are preserved.
+  const pageProduct = document.querySelector(".pd-grid h1, .detail-copy h1");
+  const requestedWhatsAppProduct = new URLSearchParams(
+    window.location.search,
+  ).get("product");
+  const whatsappProduct =
+    (pageProduct && pageProduct.textContent.trim()) || requestedWhatsAppProduct;
+  const whatsappMessage = whatsappProduct
+    ? `Hello Weeyar, I am interested in ${whatsappProduct}.\n\nTarget market:\nEstimated quantity:\nProject route: Ready stock / Private label / Custom formula\nPackaging or label needs:\n\nPlease send the current specification, MOQ, sample and quotation options.\nProduct page: ${window.location.href}`
+    : "Hello Weeyar, I found you through weeyar.com.\n\nProduct or format:\nTarget market:\nEstimated quantity:\nPrivate label needed: Yes / No\n\nPlease recommend suitable supplement options.";
   document
     .querySelectorAll('a[href^="https://wa.me/8613802837662"]')
     .forEach((link) => {
       const url = new URL(link.href);
       if (url.searchParams.get("text")) return;
-      const pageProduct = document.querySelector(".detail-copy h1");
-      const message = pageProduct
-        ? `Hello Weeyar, I am interested in ${pageProduct.textContent.trim()}. Please send the current specification, MOQ, sample and private-label options.`
-        : "Hello Weeyar, I found you through weeyar.com. Please help me choose a dietary supplement product and send current product, MOQ and private-label information.";
-      url.searchParams.set("text", message);
+      url.searchParams.set("text", whatsappMessage);
       link.href = url.toString();
     });
+
+  if (/^\/products\//.test(window.location.pathname) && pageProduct) {
+    document.querySelectorAll(".pd-hero .actions, .pd-cta .container").forEach(
+      (actionArea) => {
+        if (actionArea.querySelector(".product-whatsapp")) return;
+        const whatsapp = document.createElement("a");
+        const whatsappUrl = new URL("https://wa.me/8613802837662");
+        whatsappUrl.searchParams.set("text", whatsappMessage);
+        whatsapp.href = whatsappUrl.toString();
+        whatsapp.target = "_blank";
+        whatsapp.rel = "noopener";
+        whatsapp.className = "btn product-whatsapp";
+        whatsapp.textContent = "Ask on WhatsApp";
+        whatsapp.style.borderColor = "#20b85a";
+        whatsapp.style.color = "#15743b";
+        whatsapp.style.background = "#fff";
+        whatsapp.style.margin = "10px 0 0 10px";
+        actionArea.appendChild(whatsapp);
+      },
+    );
+  }
 
   const referenceFile = document.querySelector("#contact-file");
   const referenceFileName = document.querySelector("#contact-file-name");
@@ -273,11 +299,13 @@ document.addEventListener("DOMContentLoaded", () => {
     storage.setItem("landing_page", window.location.href);
   }
 
-  const productHeading = document.querySelector(".detail-copy h1");
+  const productHeading = document.querySelector(".pd-grid h1, .detail-copy h1");
   if (/^\/products\//.test(window.location.pathname) && productHeading) {
     storage.setItem("source_product", productHeading.textContent.trim());
     storage.setItem("source_product_page", window.location.href);
-    const categoryLabel = document.querySelector(".detail-copy .eyebrow");
+    const categoryLabel = document.querySelector(
+      ".pd-grid .badge, .detail-copy .eyebrow",
+    );
     if (categoryLabel)
       storage.setItem(
         "source_product_category",
@@ -305,6 +333,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const inquiryForm = document.querySelector("#inquiry");
   if (inquiryForm) {
+    // Keep the buying details that determine a useful quote visible instead of
+    // hiding them behind the optional-details disclosure.
+    const marketField = inquiryForm.querySelector("#contact-market")?.closest(".field");
+    const quantityField = inquiryForm
+      .querySelector("#contact-quantity")
+      ?.closest(".field");
+    if (marketField && quantityField) marketField.after(quantityField);
+
+    const detailsField = inquiryForm
+      .querySelector("#contact-details")
+      ?.closest(".field");
+    if (detailsField && !inquiryForm.querySelector('[name="Project Route"]')) {
+      const routeField = document.createElement("div");
+      routeField.className = "field full";
+      routeField.innerHTML =
+        '<label>Preferred Project Route</label><select name="Project Route"><option value="" selected>Not sure — please recommend</option><option>Ready Stock</option><option>Private Label</option><option>Custom Formula</option></select>';
+      const packagingField = document.createElement("div");
+      packagingField.className = "field full";
+      packagingField.innerHTML =
+        '<label for="contact-packaging">Packaging or Label Requirements</label><input id="contact-packaging" name="Packaging or Label Requirements" placeholder="Current packaging, own label, custom bottle/carton, or not sure">';
+      detailsField.before(routeField, packagingField);
+    }
+
     const productInput = inquiryForm.querySelector("#contact-product");
     const productField = inquiryForm.querySelector("#product-context-field");
     const productNote = inquiryForm.querySelector("#product-context-note");
