@@ -128,6 +128,11 @@
       "permanent": true
     },
     {
+      "source": "/products/shilajit-resin",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
       "source": "/product-detail",
       "has": [
         {
