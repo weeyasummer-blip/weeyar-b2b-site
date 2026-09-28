@@ -65,13 +65,13 @@ document.addEventListener('DOMContentLoaded', () => {
         link_text: linkText,
         page_path: window.location.pathname
       });
-    } else if (href.includes('product-detail.html')) {
+    } else if ((href.includes('product-detail') || /(?:^|\/)products\//.test(href))) {
       window.gtag('event', 'product_detail_click', {
         link_text: linkText,
         link_url: href,
         page_path: window.location.pathname
       });
-    } else if (href.includes('contact.html') || href === '#quote') {
+    } else if (/(?:^|\/)contact(?:\.html)?(?:[?#]|$)/.test(href) || href === '#quote') {
       window.gtag('event', 'quote_click', {
         link_text: linkText,
         page_path: window.location.pathname

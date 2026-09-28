@@ -26,13 +26,13 @@ const products = {
 };
 
 const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-const categoryCard = p => `<article class="catalog-card"><a class="catalog-image" href="../products/${p[0]}.html"><img src="../assets/images/new-products/${p[3]}-1.webp" alt="${esc(p[1])}" loading="lazy"></a><div class="catalog-body"><span class="format-tag">${p[2]}</span><h2>${esc(p[1])}</h2><p>${esc(p[4])}</p><a class="view-link" href="../products/${p[0]}.html">View Details →</a></div></article>`;
+const categoryCard = p => `<article class="catalog-card"><a class="catalog-image" href="../products/${p[0]}"><img src="../assets/images/new-products/${p[3]}-1.webp" alt="${esc(p[1])}" loading="lazy"></a><div class="catalog-body"><span class="format-tag">${p[2]}</span><h2>${esc(p[1])}</h2><p>${esc(p[4])}</p><a class="view-link" href="../products/${p[0]}">View Details →</a></div></article>`;
 
 function updateCategory(file, additions, existingExtra = []) {
   const fp = path.join(root, file);
   let html = fs.readFileSync(fp, 'utf8');
   for (const p of additions) {
-    if (!html.includes(`href="../products/${p[0]}.html"`)) {
+    if (!html.includes(`href="../products/${p[0]}"`)) {
       html = html.replace('<div class="catalog-grid">', `<div class="catalog-grid">${categoryCard(p)}`);
     }
   }
@@ -66,8 +66,8 @@ const featured = [
   ['omega-3-fish-oil','Omega-3 Fish Oil Softgels','Softgels','omega-3-fish-oil'],
   ['slippery-elm-drops','Slippery Elm Herbal Drops','Liquid Drops','slippery-elm-drops']
 ];
-const homeCard = p => `<article><a class="home-new-image" href="products/${p[0]}.html"><img loading="lazy" decoding="async" src="assets/images/new-products/${p[3]}-1.webp" alt="${esc(p[1])}"></a><div><span>${p[2]}</span><h3>${esc(p[1])}</h3><a href="products/${p[0]}.html">View product →</a></div></article>`;
-const section = `<section class="home-new-products"><div class="container"><div class="home-new-head"><div><div class="eyebrow">NEW &amp; TRENDING SUPPLEMENTS</div><h2>Explore Newly Added Product Opportunities</h2><p>Review current packaging references, supplied specifications and B2B sourcing considerations before requesting a project quotation.</p></div><a class="btn" href="products.html#catalog">View All 36 Products →</a></div><div class="home-new-grid">${featured.map(homeCard).join('')}</div></div></section>`;
+const homeCard = p => `<article><a class="home-new-image" href="products/${p[0]}"><img loading="lazy" decoding="async" src="assets/images/new-products/${p[3]}-1.webp" alt="${esc(p[1])}"></a><div><span>${p[2]}</span><h3>${esc(p[1])}</h3><a href="products/${p[0]}">View product →</a></div></article>`;
+const section = `<section class="home-new-products"><div class="container"><div class="home-new-head"><div><div class="eyebrow">NEW &amp; TRENDING SUPPLEMENTS</div><h2>Explore Newly Added Product Opportunities</h2><p>Review current packaging references, supplied specifications and B2B sourcing considerations before requesting a project quotation.</p></div><a class="btn" href="products#catalog">View All 36 Products →</a></div><div class="home-new-grid">${featured.map(homeCard).join('')}</div></div></section>`;
 let home = fs.readFileSync(path.join(root,'index.html'),'utf8');
 if (!home.includes('class="home-new-products"')) {
   home = home.replace('<section class="container v95-why">', `${section}<section class="container v95-why">`);
