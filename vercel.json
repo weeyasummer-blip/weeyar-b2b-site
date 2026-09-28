@@ -58,11 +58,6 @@
   ],
   "redirects": [
     {
-      "source": "/oem-odm/",
-      "destination": "/oem",
-      "permanent": true
-    },
-    {
       "source": "/oem-odm",
       "destination": "/oem",
       "permanent": true
