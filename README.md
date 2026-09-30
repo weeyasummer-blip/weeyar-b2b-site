@@ -12,6 +12,6 @@ Home, Products, 8 product detail pages, OEM / ODM, About, Contact.
 
 ## Before launch
 - Replace https://wa.me/ with your WhatsApp number.
-- The inquiry form opens the visitor email app and sends to summer@weeyar.com.
+- The inquiry form opens the visitor email app and sends to supplements@weeyar.com.
 - Replace generated SVG product mockups with real product images.
 - Review product claims and compliance information before publishing.

@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
           target_market: formData.get('Target Market') || 'not_provided'
         });
       }
-      const mailto = `mailto:summer@weeyar.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(rows.join('\n'))}`;
+      const mailto = `mailto:supplements@weeyar.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(rows.join('\n'))}`;
       window.location.href = mailto;
 
       if (selectedFile) {
