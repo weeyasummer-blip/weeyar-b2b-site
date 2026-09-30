@@ -333,29 +333,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const inquiryForm = document.querySelector("#inquiry");
   if (inquiryForm) {
-    // Keep the buying details that determine a useful quote visible instead of
-    // hiding them behind the optional-details disclosure.
-    const marketField = inquiryForm.querySelector("#contact-market")?.closest(".field");
-    const quantityField = inquiryForm
-      .querySelector("#contact-quantity")
-      ?.closest(".field");
-    if (marketField && quantityField) marketField.after(quantityField);
-
-    const detailsField = inquiryForm
-      .querySelector("#contact-details")
-      ?.closest(".field");
-    if (detailsField && !inquiryForm.querySelector('[name="Project Route"]')) {
-      const routeField = document.createElement("div");
-      routeField.className = "field full";
-      routeField.innerHTML =
-        '<label>Preferred Project Route</label><select name="Project Route"><option value="" selected>Not sure — please recommend</option><option>Ready Stock</option><option>Private Label</option><option>Custom Formula</option></select>';
-      const packagingField = document.createElement("div");
-      packagingField.className = "field full";
-      packagingField.innerHTML =
-        '<label for="contact-packaging">Packaging or Label Requirements</label><input id="contact-packaging" name="Packaging or Label Requirements" placeholder="Current packaging, own label, custom bottle/carton, or not sure">';
-      detailsField.before(routeField, packagingField);
-    }
-
     const productInput = inquiryForm.querySelector("#contact-product");
     const productField = inquiryForm.querySelector("#product-context-field");
     const productNote = inquiryForm.querySelector("#product-context-note");
@@ -413,6 +390,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (submitButton.disabled) return;
       const formData = new FormData(inquiryForm);
       formData.set("_replyto", String(formData.get("Email") || "").trim());
+      formData.set("email", String(formData.get("Email") || "").trim());
       attributionKeys.forEach((key) => {
         formData.append(key, storage.getItem(key) || "direct");
       });
@@ -461,19 +439,18 @@ document.addEventListener("DOMContentLoaded", () => {
           {
             method: "POST",
             signal: controller.signal,
-            body: formData,
-            headers: { Accept: "application/json" },
+            body: JSON.stringify(Object.fromEntries(formData.entries())),
+            headers: { Accept: "application/json", "Content-Type": "application/json" },
           },
         );
-        if (!response.ok) throw new Error("Submission failed");
         const result = await response.json();
-        if (result.success !== true && result.success !== "true")
-          throw new Error("Submission not accepted");
+        if (!response.ok || (result.success !== true && result.success !== "true"))
+          throw new Error(typeof result.message === "string" ? result.message.slice(0, 300) : "Submission not accepted");
 
         status.className = "form-status show success";
         status.textContent =
           "Thank you. Your inquiry has been sent successfully. We will contact you shortly.";
-        if (window.gtag) {
+        try { if (window.gtag) {
           window.gtag("event", "generate_lead", {
             form_name: "contact_inquiry",
             product_category:
@@ -490,6 +467,7 @@ document.addEventListener("DOMContentLoaded", () => {
               formData.get("Product Category") || "not_selected",
           });
         }
+        } catch { /* Analytics must not change submission status. */ }
         inquiryForm.reset();
         if (productInput && productContext)
           productInput.value = productContext.slice(0, 160);
@@ -510,11 +488,15 @@ document.addEventListener("DOMContentLoaded", () => {
         if (referenceFileName)
           referenceFileName.textContent = "No file selected";
       } catch (error) {
-        if (window.gtag)
-          window.gtag("event", "rfq_error", { form_name: "contact_inquiry" });
+        try { if (window.gtag) window.gtag("event", "rfq_error", { form_name: "contact_inquiry" }); } catch {}
         status.className = "form-status show error";
         status.innerHTML =
           'We could not confirm your submission. Your details are still here. If you have not received a reply, please email <a href="mailto:supplements@weeyar.com">supplements@weeyar.com</a> or <a href="https://wa.me/8613802837662" target="_blank" rel="noopener">contact us on WhatsApp</a>.';
+        if (error instanceof Error && error.message !== "Failed to fetch") {
+          const detail = document.createElement("p");
+          detail.textContent = "Details: " + error.message;
+          status.append(detail);
+        }
       } finally {
         window.clearTimeout(timeout);
         submitButton.disabled = false;
