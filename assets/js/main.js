@@ -412,6 +412,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const submitButton = inquiryForm.querySelector(".submit");
       if (submitButton.disabled) return;
       const formData = new FormData(inquiryForm);
+      formData.set("_replyto", String(formData.get("Email") || "").trim());
       attributionKeys.forEach((key) => {
         formData.append(key, storage.getItem(key) || "direct");
       });
@@ -456,7 +457,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const timeout = window.setTimeout(() => controller.abort(), 20000);
       try {
         const response = await fetch(
-          "https://formsubmit.co/ajax/summer@weeyar.com",
+          "https://formsubmit.co/ajax/supplements@weeyar.com",
           {
             method: "POST",
             signal: controller.signal,
@@ -513,7 +514,7 @@ document.addEventListener("DOMContentLoaded", () => {
           window.gtag("event", "rfq_error", { form_name: "contact_inquiry" });
         status.className = "form-status show error";
         status.innerHTML =
-          'We could not confirm your submission. Your details are still here. If you have not received a reply, please email <a href="mailto:summer@weeyar.com">summer@weeyar.com</a> or <a href="https://wa.me/8613802837662" target="_blank" rel="noopener">contact us on WhatsApp</a>.';
+          'We could not confirm your submission. Your details are still here. If you have not received a reply, please email <a href="mailto:supplements@weeyar.com">supplements@weeyar.com</a> or <a href="https://wa.me/8613802837662" target="_blank" rel="noopener">contact us on WhatsApp</a>.';
       } finally {
         window.clearTimeout(timeout);
         submitButton.disabled = false;

@@ -14,5 +14,5 @@ WEEYAR V95 首页更新包｜部署说明
 
 回退：GitHub 打开 Commits，找到 Update V95 homepage，选择 Revert；或重新上传第 2 步保存的旧版本。
 
-Email: summer@weeyar.com
+Email: supplements@weeyar.com
 WhatsApp: +86 138 0283 7662
