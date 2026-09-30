@@ -435,7 +435,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const timeout = window.setTimeout(() => controller.abort(), 20000);
       try {
         const response = await fetch(
-          "https://formsubmit.co/ajax/supplements@weeyar.com",
+          "/api/inquiry",
           {
             method: "POST",
             signal: controller.signal,
