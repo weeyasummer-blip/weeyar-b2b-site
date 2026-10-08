@@ -1,9 +1,9 @@
 [
   {
     "slug": "vitamin-d3-k2",
-    "name": "Vitamin D3 + K2",
-    "category": "Softgels",
-    "description": "Softgel format for B2B specification, packaging and private-label review"
+    "name": "Vitamin D3 + K2 Capsules",
+    "category": "Capsules",
+    "description": "120 capsules per bottle. Vitamin D3 - front label displays 5,000 IU, Vitamin K2 - front label displays 200 mcg. Packaging and wholesale specifications for B2B sourcing."
   },
   {
     "slug": "creatine-gummies",
@@ -13,9 +13,9 @@
   },
   {
     "slug": "apple-cider-vinegar",
-    "name": "Apple Cider Vinegar Gummies",
+    "name": "Apple Cider Vinegar Gummies - 30 Count",
     "category": "Gummies",
-    "description": "Daily wellness gummy with B12"
+    "description": "30 gummies per bottle. Vitamin B12 (methylcobalamin), Unfiltered apple cider vinegar (Malus domestica). Packaging and wholesale specifications for B2B sourcing."
   },
   {
     "slug": "biotin-gummies",
@@ -76,5 +76,35 @@
     "name": "Probiotic Complex",
     "category": "Capsules",
     "description": "Multi-strain probiotic for digestive and immune health"
+  },
+  {
+    "slug": "apple-cider-vinegar-gummies-60",
+    "name": "Apple Cider Vinegar Gummies - 60 Count",
+    "category": "Gummies",
+    "description": "60 gummies per bottle. Vitamin B12 (methylcobalamin), Unfiltered apple cider vinegar (Malus domestica). Packaging and wholesale specifications for B2B sourcing."
+  },
+  {
+    "slug": "pumpkin-seed-oil-drops",
+    "name": "Pumpkin Seed Oil Liquid Drops",
+    "category": "Liquid Drops",
+    "description": "30 ml dropper bottle with carton. Pumpkin seed oil. Packaging and wholesale specifications for B2B sourcing."
+  },
+  {
+    "slug": "mullein-herbal-drops",
+    "name": "Mullein Herbal Blend Drops",
+    "category": "Liquid Drops",
+    "description": "60 ml dropper bottle with carton. Mullein leaf extract, Ginger extract. Packaging and wholesale specifications for B2B sourcing."
+  },
+  {
+    "slug": "cordyceps-herbal-drops",
+    "name": "Cordyceps Herbal Blend Drops",
+    "category": "Liquid Drops",
+    "description": "30 ml dropper bottle with carton. Cordyceps sinensis extract (10:1), as named in the supplied material, Mullein leaf extract (10:1; Verbascum thapsus). Packaging and wholesale specifications for B2B sourcing."
+  },
+  {
+    "slug": "respiratory-herbal-spray",
+    "name": "Respiratory Herbal Spray",
+    "category": "Sprays",
+    "description": "30 ml spray bottle with carton. Eucalyptus leaf extract, Peppermint leaf extract. Packaging and wholesale specifications for B2B sourcing."
   }
 ]
