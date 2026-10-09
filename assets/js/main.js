@@ -455,16 +455,9 @@ document.addEventListener("DOMContentLoaded", () => {
             form_name: "contact_inquiry",
             product_category:
               formData.get("Product Category") || "not_selected",
-            target_market: formData.get("Target Market") || "not_provided",
             documentation_request:
               formData.get("Documentation Request") || "not_selected",
             source_product: formData.get("source_product") || "not_specified",
-          });
-          window.gtag("event", "rfq_submit", {
-            form_name: "contact_inquiry",
-            source_product: formData.get("source_product") || "not_specified",
-            product_category:
-              formData.get("Product Category") || "not_selected",
           });
         }
         } catch { /* Analytics must not change submission status. */ }
