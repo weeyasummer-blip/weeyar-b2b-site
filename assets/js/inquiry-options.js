@@ -4,6 +4,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const details = form.querySelector("#contact-details");
   const product = form.querySelector("#contact-product");
   const hint = form.querySelector("#request-choice-status");
+
+  // Keep alternate contact methods aligned with the product shown in the form.
+  const selectedProduct = product ? product.value.trim() : "";
+  if (selectedProduct) {
+    const message = "Hello Weeyar, I am interested in " + selectedProduct +
+      ".\nPlease send quotation, MOQ and sample options.\n\nDestination country:\nEstimated quantity:";
+    document.querySelectorAll('a[href="mailto:supplements@weeyar.com"]').forEach(link => {
+      link.href = "mailto:supplements@weeyar.com?subject=" +
+        encodeURIComponent("Product inquiry: " + selectedProduct.replace(/[\r\n]/g, " ")) +
+        "&body=" + encodeURIComponent(message);
+    });
+    document.querySelectorAll('a[href^="https://wa.me/8613802837662"]').forEach(link => {
+      const url = new URL(link.href);
+      const existing = url.searchParams.get("text") || "";
+      if (!existing || existing.startsWith("Hello Weeyar, I found you through weeyar.com.")) {
+        url.searchParams.set("text", message);
+        link.href = url.toString();
+      }
+    });
+  }
+
   let lastSuggestion = "";
   const requests = {
     quote: "Please send a quotation and available packaging options.",
