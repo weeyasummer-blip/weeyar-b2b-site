@@ -123,11 +123,6 @@
       "permanent": true
     },
     {
-      "source": "/products/vitamin-c-effervescent",
-      "destination": "/products",
-      "permanent": true
-    },
-    {
       "source": "/products/shilajit-resin",
       "destination": "/products",
       "permanent": true
