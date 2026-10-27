@@ -166,6 +166,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const href = link.getAttribute("href") || "";
     const linkText = link.textContent.trim().replace(/\s+/g, " ").slice(0, 100);
+    const clickedPackaging = new URL(link.href, location.href).searchParams.get("packaging");
+    if (link.classList.contains("pkg-button") && Object.prototype.hasOwnProperty.call(packagingNames, clickedPackaging)) {
+      try { window.gtag("event", "packaging_inquiry_click", {
+        packaging_type: clickedPackaging,
+        page_path: window.location.pathname
+      }); } catch { /* Analytics must not prevent navigation. */ }
+    }
+
 
     if (href.includes("tiktok.com/")) {
       window.gtag("event", "social_click", {
@@ -364,7 +372,12 @@ document.addEventListener("DOMContentLoaded", () => {
       requestedDocumentation || storage.getItem("documentation_request");
 
     if (productContext && productInput && productField) {
-      productInput.value = productContext.slice(0, 160);
+      productInput.value = selectedPackaging || productContext.slice(0, 160);
+      if (selectedPackaging) {
+        const label = inquiryForm.querySelector('label[for="contact-product"]');
+        if (label) label.textContent = "Selected packaging";
+        if (productNote) productNote.textContent = "Your selected packaging concept is included below. Specifications and availability will be confirmed for your project.";
+      }
       productField.hidden = false;
       if (productNote) productNote.classList.add("show");
     }
@@ -469,6 +482,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try { if (window.gtag) {
           window.gtag("event", "generate_lead", {
             form_name: "contact_inquiry",
+              packaging_type: selectedPackaging ? packagingKey : "not_selected",
             product_category:
               formData.get("Product Category") || "not_selected",
             documentation_request:
@@ -479,7 +493,12 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch { /* Analytics must not change submission status. */ }
         inquiryForm.reset();
         if (productInput && productContext)
-          productInput.value = productContext.slice(0, 160);
+          productInput.value = selectedPackaging || productContext.slice(0, 160);
+      if (selectedPackaging) {
+        const label = inquiryForm.querySelector('label[for="contact-product"]');
+        if (label) label.textContent = "Selected packaging";
+        if (productNote) productNote.textContent = "Your selected packaging concept is included below. Specifications and availability will be confirmed for your project.";
+      }
         if (categorySelect && categoryContext) {
           const option = Array.from(categorySelect.options).find(
             (item) =>
