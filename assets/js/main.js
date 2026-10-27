@@ -321,16 +321,29 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     else storage.removeItem("source_product_category");
   }
-  const packagingNames = {"capsule-bottle":"Capsule bottles","gummy-bottle":"Gummy bottles","powder-tub":"Powder tubs","stick-sachet":"Stick sachets","dropper-bottle":"Dropper bottles","paper-carton":"Paper cartons","gift-box":"Gift boxes","fitted-insert":"Fitted inserts"};
+  const packagingNames = {"label-only":"Label-only customization","capsule-bottle":"Capsule bottles","gummy-bottle":"Gummy bottles","powder-tub":"Powder tubs","stick-sachet":"Stick sachets","dropper-bottle":"Dropper bottles","paper-carton":"Paper cartons","gift-box":"Gift boxes","fitted-insert":"Fitted inserts"};
+  const packagingProducts = {"creatine-gummies":"Creatine Gummies", "milk-thistle-drops":"Milk Thistle Herbal Drops"};
+  const packagingItem = query.get("item");
+  const packagingProduct = Object.prototype.hasOwnProperty.call(packagingProducts, packagingItem) ? packagingProducts[packagingItem] : "";
+  const packagingSource = packagingProduct ? "https://weeyar.com/products/" + packagingItem : "https://weeyar.com/oem#packaging-design";
+  if (packagingProduct && document.querySelector(".pkg-showcase")) {
+    const note = document.createElement("p");
+    note.className = "packaging-product-context";
+    note.textContent = "Packaging ideas for " + packagingProduct + ". New packaging is optional; you can also customize the existing bottle label from 500 bottles. ";
+    const back = document.createElement("a");back.href = "/products/" + packagingItem;back.textContent = "Return to product";back.style.textDecoration="underline";note.append(back);
+    const label = document.createElement("a");label.href="/contact?item="+packagingItem+"&packaging=label-only#quote";label.textContent="Discuss label-only customization";label.className="pkg-button";label.style.margin="12px 0";
+    document.querySelector(".pkg-heading").append(note,label);
+    document.querySelectorAll(".pkg-button").forEach(a=>{const url=new URL(a.href);url.searchParams.set("item",packagingItem);a.href=url.pathname+url.search+url.hash;});
+  }
   const packagingKey = query.get("packaging");
   const selectedPackaging = Object.prototype.hasOwnProperty.call(packagingNames, packagingKey) ? packagingNames[packagingKey] : "";
   if (selectedPackaging) {
     storage.removeItem("source_product_category");
     storage.removeItem("documentation_request");
-    storage.setItem("source_product", "Supplement packaging project");
-    storage.setItem("source_product_page", "https://weeyar.com/oem#packaging-design");
+    storage.setItem("source_product", packagingProduct || "Supplement packaging project");
+    storage.setItem("source_product_page", packagingSource);
   }
-  const requestedProduct = selectedPackaging ? "Supplement packaging project" : query.get("product");
+  const requestedProduct = selectedPackaging ? (packagingProduct || "Supplement packaging project") : query.get("product");
   const requestedCategory = query.get("category");
   const requestedDocumentation = query.get("request");
   if (requestedProduct) {
@@ -351,7 +364,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const inquiryForm = document.querySelector("#inquiry");
   if (inquiryForm && selectedPackaging) {
     const details = inquiryForm.querySelector("#contact-details");
-    if (details && !details.value.trim()) details.value = "Packaging interest: " + selectedPackaging + "\nI would like to discuss this packaging concept for a supplement project. Please confirm feasibility, available specifications and project requirements.\n\nProduct / formula:\nTarget market:\nEstimated quantity:\nPreferred size / material / artwork:\nReference: https://weeyar.com/oem#packaging-design";
+    if (details && !details.value.trim()) details.value = "Packaging interest: " + selectedPackaging + (packagingProduct ? "\nProduct: " + packagingProduct + "\nProduct page: " + packagingSource : "") + (packagingKey === "label-only" ? "\nI want to keep the existing bottle and customize the label only. I understand the minimum is 500 bottles. Please confirm label requirements and whether any existing carton artwork needs updating." : "") + "\nI would like to discuss this packaging concept for a supplement project. Please confirm feasibility, available specifications and project requirements.\n\nProduct / formula:\nTarget market:\nEstimated quantity:\nPreferred size / material / artwork:\nReference: https://weeyar.com/oem#packaging-design";
     const status = inquiryForm.querySelector("#request-choice-status");
     if(status) status.textContent = "Selected packaging: " + selectedPackaging + ". Your starting message is ready to edit below.";
   }
@@ -372,10 +385,10 @@ document.addEventListener("DOMContentLoaded", () => {
       requestedDocumentation || storage.getItem("documentation_request");
 
     if (productContext && productInput && productField) {
-      productInput.value = selectedPackaging || productContext.slice(0, 160);
+      productInput.value = (selectedPackaging ? (packagingProduct ? packagingProduct + " - " : "") + selectedPackaging : productContext.slice(0, 160));
       if (selectedPackaging) {
         const label = inquiryForm.querySelector('label[for="contact-product"]');
-        if (label) label.textContent = "Selected packaging";
+        if (label) label.textContent = packagingProduct ? "Product and customization" : "Selected packaging";
         if (productNote) productNote.textContent = "Your selected packaging concept is included below. Specifications and availability will be confirmed for your project.";
       }
       productField.hidden = false;
@@ -493,10 +506,10 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch { /* Analytics must not change submission status. */ }
         inquiryForm.reset();
         if (productInput && productContext)
-          productInput.value = selectedPackaging || productContext.slice(0, 160);
+          productInput.value = (selectedPackaging ? (packagingProduct ? packagingProduct + " - " : "") + selectedPackaging : productContext.slice(0, 160));
       if (selectedPackaging) {
         const label = inquiryForm.querySelector('label[for="contact-product"]');
-        if (label) label.textContent = "Selected packaging";
+        if (label) label.textContent = packagingProduct ? "Product and customization" : "Selected packaging";
         if (productNote) productNote.textContent = "Your selected packaging concept is included below. Specifications and availability will be confirmed for your project.";
       }
         if (categorySelect && categoryContext) {
