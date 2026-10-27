@@ -321,7 +321,7 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     else storage.removeItem("source_product_category");
   }
-  const packagingNames = {"label-only":"Label-only customization","capsule-bottle":"Capsule bottles","gummy-bottle":"Gummy bottles","powder-tub":"Powder tubs","stick-sachet":"Stick sachets","dropper-bottle":"Dropper bottles","paper-carton":"Paper cartons","gift-box":"Gift boxes","fitted-insert":"Fitted inserts"};
+  const packagingNames = {"container-change":"Container change","label-only":"Label-only customization","capsule-bottle":"Capsule bottles","gummy-bottle":"Gummy bottles","powder-tub":"Powder tubs","stick-sachet":"Stick sachets","dropper-bottle":"Dropper bottles","paper-carton":"Paper cartons","gift-box":"Gift boxes","fitted-insert":"Fitted inserts"};
   const packagingProducts = {"creatine-gummies":"Creatine Gummies", "milk-thistle-drops":"Milk Thistle Herbal Drops"};
   const packagingItem = query.get("item");
   const packagingProduct = Object.prototype.hasOwnProperty.call(packagingProducts, packagingItem) ? packagingProducts[packagingItem] : "";
