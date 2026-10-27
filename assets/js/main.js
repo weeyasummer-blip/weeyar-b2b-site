@@ -313,7 +313,16 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     else storage.removeItem("source_product_category");
   }
-  const requestedProduct = query.get("product");
+  const packagingNames = {"capsule-bottle":"Capsule bottles","gummy-bottle":"Gummy bottles","powder-tub":"Powder tubs","stick-sachet":"Stick sachets","dropper-bottle":"Dropper bottles","paper-carton":"Paper cartons","gift-box":"Gift boxes","fitted-insert":"Fitted inserts"};
+  const packagingKey = query.get("packaging");
+  const selectedPackaging = Object.prototype.hasOwnProperty.call(packagingNames, packagingKey) ? packagingNames[packagingKey] : "";
+  if (selectedPackaging) {
+    storage.removeItem("source_product_category");
+    storage.removeItem("documentation_request");
+    storage.setItem("source_product", "Supplement packaging project");
+    storage.setItem("source_product_page", "https://weeyar.com/oem#packaging-design");
+  }
+  const requestedProduct = selectedPackaging ? "Supplement packaging project" : query.get("product");
   const requestedCategory = query.get("category");
   const requestedDocumentation = query.get("request");
   if (requestedProduct) {
@@ -332,6 +341,13 @@ document.addEventListener("DOMContentLoaded", () => {
     storage.setItem("documentation_request", requestedDocumentation);
 
   const inquiryForm = document.querySelector("#inquiry");
+  if (inquiryForm && selectedPackaging) {
+    const details = inquiryForm.querySelector("#contact-details");
+    if (details && !details.value.trim()) details.value = "Packaging interest: " + selectedPackaging + "\nI would like to discuss this packaging concept for a supplement project. Please confirm feasibility, available specifications and project requirements.\n\nProduct / formula:\nTarget market:\nEstimated quantity:\nPreferred size / material / artwork:\nReference: https://weeyar.com/oem#packaging-design";
+    const status = inquiryForm.querySelector("#request-choice-status");
+    if(status) status.textContent = "Selected packaging: " + selectedPackaging + ". Your starting message is ready to edit below.";
+  }
+
   if (inquiryForm) {
     const productInput = inquiryForm.querySelector("#contact-product");
     const productField = inquiryForm.querySelector("#product-context-field");
@@ -496,5 +512,39 @@ document.addEventListener("DOMContentLoaded", () => {
         submitButton.textContent = "Send Inquiry →";
       }
     });
+  }
+});
+
+// Packaging is part of OEM/ODM; shared navigation also serves the mobile menu.
+document.addEventListener('DOMContentLoaded', () => {
+  const style = document.createElement('style');
+  style.textContent = '.pkg-nav{position:relative;display:inline-flex;align-items:center;gap:2px}.pkg-nav-toggle{border:0;background:transparent;color:inherit;cursor:pointer;font:inherit;padding:8px;min-width:32px;min-height:40px}.pkg-nav-panel{position:absolute;top:100%;left:0;min-width:220px;background:#fff;border:1px solid #e6def4;border-radius:12px;padding:12px;box-shadow:0 12px 30px #24143f20;z-index:100}.pkg-nav-panel[hidden]{display:none}.pkg-nav-panel a{display:block!important;padding:12px!important;color:#573399!important;font-size:14px!important;white-space:nowrap}.pkg-nav-toggle:focus-visible{outline:2px solid #7548f5}@media(max-width:980px){.links.open .pkg-nav{display:flex;flex-wrap:wrap;width:100%}.links.open .pkg-nav-panel{position:static;flex-basis:100%;box-shadow:none;margin:4px 0 8px}.links.open .pkg-nav-panel a{white-space:normal}}';
+  document.head.append(style);
+  document.querySelectorAll('header nav.links a').forEach(link => {
+    if (new URL(link.href).pathname.replace(/\/$/,'') !== '/oem') return;
+    if (link.closest('.pkg-nav')) return;
+    const group = document.createElement('span'); group.className = 'pkg-nav';
+    link.before(group); group.append(link);
+    const button = document.createElement('button');
+    button.type = 'button'; button.className = 'pkg-nav-toggle'; button.textContent = '▾';
+    button.setAttribute('aria-label','Show OEM / ODM packaging options');button.setAttribute('aria-expanded','false');
+    const panel = document.createElement('span');panel.className = 'pkg-nav-panel';panel.hidden = true;
+    panel.id = 'pkg-nav-options';button.setAttribute('aria-controls',panel.id);
+    const packaging = document.createElement('a');packaging.href='/oem#packaging-design';packaging.textContent='Packaging & Design';panel.append(packaging);
+    const close=()=>{panel.hidden=true;button.setAttribute('aria-expanded','false');};
+    button.addEventListener('click',()=>{panel.hidden=!panel.hidden;button.setAttribute('aria-expanded',String(!panel.hidden));});
+    group.addEventListener('keydown',e=>{if(e.key==='Escape'){close();button.focus();}});
+    document.addEventListener('click',e=>{if(!group.contains(e.target))close();});
+    packaging.addEventListener('click',()=>{close();document.querySelector('header .links')?.classList.remove('open');});
+    group.append(button,panel);
+  });
+  const footer=document.querySelector('footer');
+  if(footer){
+    const existing=[...footer.querySelectorAll('a')].find(a=>/packaging/i.test(a.textContent));
+    if(existing){existing.href='/oem#packaging-design';existing.textContent='Packaging & Design';}
+    else {
+      const heading=[...footer.querySelectorAll('h3,h4')].find(h=>/solutions/i.test(h.textContent));
+      if(heading){const a=document.createElement('a');a.href='/oem#packaging-design';a.textContent='Packaging & Design';heading.parentElement.append(a);}
+    }
   }
 });

@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const selectedProduct = product ? product.value.trim() : "";
   if (selectedProduct) {
     const message = "Hello Weeyar, I am interested in " + selectedProduct +
-      ".\nPlease send quotation, MOQ and sample options.\n\nDestination country:\nEstimated quantity:";
+      ".\n" + (new URLSearchParams(location.search).has("packaging") && details && details.value.startsWith("Packaging interest:") ? details.value : "Please send quotation, MOQ and sample options.\n\nDestination country:\nEstimated quantity:");
     document.querySelectorAll('a[href="mailto:supplements@weeyar.com"]').forEach(link => {
       link.href = "mailto:supplements@weeyar.com?subject=" +
         encodeURIComponent("Product inquiry: " + selectedProduct.replace(/[\r\n]/g, " ")) +
