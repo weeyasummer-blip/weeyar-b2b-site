@@ -26,13 +26,14 @@ export default async function handler(req, res) {
     if (input.website) throw new Error();
   } catch { return reply(400, { success: false, message: "Please check your name, email and inquiry." }); }
   const reference = randomUUID();
-  const fields = ["Name", "Email", "Project Details", "Target Market", "Estimated Quantity", "Company / Brand", "Product of Interest", "source_product", "source_product_page", "landing_page", "utm_source", "utm_medium", "utm_campaign"];
-  const text = ["Weeyar Supplements website inquiry", "Reference: " + reference, "", ...fields.filter(k => input[k]).map(k => k + ": " + input[k]), "", "Use Reply to respond to the customer's email."].join("\n");
+  const isTest = input.submission_type === "test";
+  const fields = ["Name", "Email", "Project Details", "Target Market", "Estimated Quantity", "Company / Brand", "Product of Interest", "source_product", "source_product_page", "landing_page", "entry_referrer", "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "first_visit_source", "first_visit_medium", "first_visit_campaign", "first_visit_content", "first_visit_term", "first_visit_landingPage", "first_visit_referrer"];
+  const text = ["Weeyar Supplements website inquiry", "Submission type: " + (isTest ? "TEST - exclude from customer inquiry totals" : "CUSTOMER"), "Reference: " + reference, "", ...fields.filter(k => input[k]).map(k => k + ": " + input[k]), "", "Use Reply to respond to the customer's email."].join("\n");
   try {
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: { Authorization: "Bearer " + process.env.RESEND_API_KEY, "Content-Type": "application/json" },
-      body: JSON.stringify({ from: "Weeyar Supplements Website <website@notifications.weeyarcosmetics.com>", to: ["supplements@weeyar.com"], reply_to: input.Email.trim(), subject: "[Weeyar Supplements] Website inquiry", text }),
+      body: JSON.stringify({ from: "Weeyar Supplements Website <website@notifications.weeyarcosmetics.com>", to: ["supplements@weeyar.com"], reply_to: input.Email.trim(), subject: (isTest ? "[TEST] " : "") + "[Weeyar Supplements] Website inquiry", text }),
       signal: AbortSignal.timeout(15000)
     });
     const result = await response.json();
