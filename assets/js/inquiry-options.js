@@ -18,7 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll('a[href^="https://wa.me/8613802837662"]').forEach(link => {
       const url = new URL(link.href);
       const existing = url.searchParams.get("text") || "";
-      if (!existing || existing.startsWith("Hello Weeyar, I found you through weeyar.com.")) {
+      if (!existing || existing.startsWith("Hello Weeyar, I found you through weeyar.com.") ||
+          (existing.startsWith("Hello Weeyar, I am interested in ") && existing.includes("\nProduct page: " + location.href))) {
         url.searchParams.set("text", message);
         link.href = url.toString();
       }
