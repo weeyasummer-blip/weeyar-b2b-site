@@ -5,26 +5,36 @@ document.addEventListener("DOMContentLoaded", () => {
   const product = form.querySelector("#contact-product");
   const hint = form.querySelector("#request-choice-status");
 
-  // Keep alternate contact methods aligned with the product shown in the form.
-  const selectedProduct = product ? product.value.trim() : "";
-  if (selectedProduct) {
-    const message = "Hello Weeyar, I am interested in " + selectedProduct +
-      ".\n" + (new URLSearchParams(location.search).has("packaging") && details && details.value.startsWith("Packaging interest:") ? details.value : "Please send quotation, MOQ and sample options.\n\nDestination country:\nEstimated quantity:");
-    document.querySelectorAll('a[href="mailto:supplements@weeyar.com"]').forEach(link => {
+  // Only update the site's automatic contact messages; keep hand-written links intact.
+  const mailLinks = [...document.querySelectorAll('a[href="mailto:supplements@weeyar.com"]')];
+  const whatsappLinks = [...document.querySelectorAll('a[href^="https://wa.me/8613802837662"]')].filter(link => {
+    const text = new URL(link.href).searchParams.get("text") || "";
+    return !text || text.startsWith("Hello Weeyar, I found you through weeyar.com.") ||
+      (text.startsWith("Hello Weeyar, I am interested in ") && text.includes("\nProduct page: " + location.href));
+  });
+  function syncContactMessages() {
+    const selectedProduct = product ? product.value.trim() : "";
+    const request = details ? details.value.trim() : "";
+    const market = form.querySelector("#contact-market");
+    const quantity = form.querySelector("#contact-quantity");
+    const message = (selectedProduct ? "Hello Weeyar, I am interested in " + selectedProduct + "." : "Hello Weeyar, I found you through weeyar.com.") +
+      "\n" + (request || "Please send quotation, MOQ and sample options.") +
+      (market && market.value.trim() ? "\nDestination country / market: " + market.value.trim() : "") +
+      (quantity && quantity.value.trim() ? "\nEstimated quantity: " + quantity.value.trim() : "");
+    mailLinks.forEach(link => {
       link.href = "mailto:supplements@weeyar.com?subject=" +
-        encodeURIComponent("Product inquiry: " + selectedProduct.replace(/[\r\n]/g, " ")) +
+        encodeURIComponent(selectedProduct ? "Product inquiry: " + selectedProduct.replace(/[\r\n]/g, " ") : "Supplement project inquiry") +
         "&body=" + encodeURIComponent(message);
     });
-    document.querySelectorAll('a[href^="https://wa.me/8613802837662"]').forEach(link => {
+    whatsappLinks.forEach(link => {
       const url = new URL(link.href);
-      const existing = url.searchParams.get("text") || "";
-      if (!existing || existing.startsWith("Hello Weeyar, I found you through weeyar.com.") ||
-          (existing.startsWith("Hello Weeyar, I am interested in ") && existing.includes("\nProduct page: " + location.href))) {
-        url.searchParams.set("text", message);
-        link.href = url.toString();
-      }
+      url.searchParams.set("text", message);
+      link.href = url.toString();
     });
   }
+  syncContactMessages();
+  form.addEventListener("input", syncContactMessages);
+  form.addEventListener("reset", () => window.setTimeout(syncContactMessages, 0));
 
   let lastSuggestion = "";
   const requests = {
@@ -42,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         hint.textContent = "Your message has been kept. Add any extra requirements before sending.";
       }
+      syncContactMessages();
       details.focus();
     });
   });
