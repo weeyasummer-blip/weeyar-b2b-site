@@ -323,7 +323,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   const packagingNames = {"container-change":"Container change","label-only":"Label-only customization","capsule-bottle":"Capsule bottles","gummy-bottle":"Gummy bottles","powder-tub":"Powder tubs","stick-sachet":"Stick sachets","dropper-bottle":"Dropper bottles","paper-carton":"Paper cartons","gift-box":"Gift boxes","fitted-insert":"Fitted inserts"};
   const packagingProducts = {"creatine-gummies":"Creatine Gummies", "milk-thistle-drops":"Milk Thistle Herbal Drops"};
-  const packagingItem = query.get("item");
+  // Accept the older product-name links as well as the current item links.
+  const explicitPackagingItem = query.get("item");
+  const namedPackagingItem = Object.keys(packagingProducts).find(item =>
+    [packagingProducts[item], item, item === "milk-thistle-drops" ? "Milk Thistle Drops" : ""]
+      .filter(Boolean).some(name => name.toLowerCase() === (query.get("product") || "").trim().toLowerCase())
+  );
+  const packagingItem = explicitPackagingItem || namedPackagingItem;
   const packagingProduct = Object.prototype.hasOwnProperty.call(packagingProducts, packagingItem) ? packagingProducts[packagingItem] : "";
   const packagingSource = packagingProduct ? "https://weeyar.com/products/" + packagingItem : "https://weeyar.com/oem#packaging-design";
   if (packagingProduct && document.querySelector(".pkg-showcase")) {
