@@ -1,5 +1,23 @@
 import { randomUUID, createHash } from "node:crypto";
 
+function inquiryChannel(input) {
+  const rawSource = String(input.first_visit_source || input.utm_source || "").trim().toLowerCase();
+  const source = ["external_referral","direct_or_unknown","direct","(direct)","(none)","none","not_available"].includes(rawSource) ? "" : rawSource;
+  const ref = String(input.first_visit_referrer || input.entry_referrer || "");
+  let host = ""; try { host = new URL(ref).hostname.toLowerCase(); } catch {}
+  const match = (domains) => domains.some(d => host === d || host.endsWith("." + d));
+  let channel = "未知 / 直接访问";
+  if (["chatgpt","chatgpt.com","openai"].includes(source) || !source && match(["chatgpt.com","chat.openai.com"])) channel = "ChatGPT";
+  else if (source === "google" || !source && match(["google.com","google.co.uk","google.ca","google.com.au"])) channel = "Google";
+  else if (source === "bing" || !source && match(["bing.com"])) channel = "Bing";
+  else if (["facebook","fb","facebook.com"].includes(source) || !source && match(["facebook.com","fb.com"])) channel = "Facebook";
+  else if (["instagram","ig","instagram.com"].includes(source) || !source && match(["instagram.com"])) channel = "Instagram";
+  else if (["youtube","yt","youtube.com"].includes(source) || !source && match(["youtube.com","youtu.be"])) channel = "YouTube";
+  else if (source && !["direct","(direct)","(none)","none"].includes(source)) channel = "其他来源：" + source;
+  else if (host && host !== "weeyar.com" && host !== "www.weeyar.com") channel = "其他引荐：" + host;
+  return { channel, evidence: source ? "来源参数（访客浏览器记录）" : host && !["weeyar.com","www.weeyar.com"].includes(host) ? "引荐网址（访客浏览器记录）" : "未取得可识别的外部来源" };
+}
+
 const attempts = new Map();
 export default async function handler(req, res) {
   res.setHeader("Cache-Control", "no-store");
@@ -28,7 +46,10 @@ export default async function handler(req, res) {
   const reference = randomUUID();
   const isTest = input.submission_type === "test";
   const fields = ["Name", "Email", "Project Details", "Target Market", "Estimated Quantity", "Company / Brand", "Product of Interest", "source_product", "source_product_page", "landing_page", "entry_referrer", "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "first_visit_source", "first_visit_medium", "first_visit_campaign", "first_visit_content", "first_visit_term", "first_visit_landingPage", "first_visit_referrer"];
-  const text = ["Weeyar Supplements website inquiry", "Submission type: " + (isTest ? "TEST - exclude from customer inquiry totals" : "CUSTOMER"), "Reference: " + reference, "", ...fields.filter(k => input[k]).map(k => k + ": " + input[k]), "", "Use Reply to respond to the customer's email."].join("\n");
+  const attribution = inquiryChannel(input);
+  const receivedAt = new Intl.DateTimeFormat("zh-CN", {timeZone:"Asia/Shanghai",dateStyle:"medium",timeStyle:"medium",hour12:false}).format(new Date(now));
+  const summary = ["收到一封来自【" + attribution.channel + "】的网站询盘", "→ 时间：" + receivedAt + "（北京时间）", "→ 姓名：" + input.Name, "→ 邮箱：" + input.Email, "→ 公司：" + (input["Company / Brand"] || "未填写"), "→ 目标市场（客户填写）：" + (input["Target Market"] || "未填写"), "→ 产品：" + (input["Product of Interest"] || input.source_product || "未填写"), "→ 数量：" + (input["Estimated Quantity"] || "未填写"), "→ 询盘原文：" + input["Project Details"], "→ 来源依据：" + attribution.evidence, "→ 首次落地页：" + (input.first_visit_landingPage || input.landing_page || "未记录"), "", "—— 原始记录 ——"];
+  const text = [...summary, "Weeyar Supplements website inquiry", "Submission type: " + (isTest ? "TEST - exclude from customer inquiry totals" : "CUSTOMER"), "Reference: " + reference, "", ...fields.filter(k => input[k]).map(k => k + ": " + input[k]), "", "Use Reply to respond to the customer's email."].join("\n");
   try {
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST",

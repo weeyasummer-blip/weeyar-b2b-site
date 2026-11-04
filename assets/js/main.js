@@ -479,6 +479,7 @@ document.addEventListener("DOMContentLoaded", () => {
       status.className = "form-status";
       status.textContent = "";
 
+      let inquiryHttpStatus = 0;
       const controller = new AbortController();
       const timeout = window.setTimeout(() => controller.abort(), 20000);
       try {
@@ -491,6 +492,7 @@ document.addEventListener("DOMContentLoaded", () => {
             headers: { Accept: "application/json", "Content-Type": "application/json" },
           },
         );
+        inquiryHttpStatus = response.status;
         const result = await response.json();
         if (!response.ok || (result.success !== true && result.success !== "true"))
           throw new Error(typeof result.message === "string" ? result.message.slice(0, 300) : "Submission not accepted");
@@ -535,7 +537,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (referenceFileName)
           referenceFileName.textContent = "No file selected";
       } catch (error) {
-        try { if (window.gtag) window.gtag("event", "rfq_error", { form_name: "contact_inquiry" }); } catch {}
+        try { if (window.gtag) window.gtag("event", "rfq_error", { form_name: "contact_inquiry", http_status: inquiryHttpStatus, error_kind: error && (error.name === "AbortError" || error.name === "TimeoutError") ? "timeout" : inquiryHttpStatus ? "response_not_confirmed" : "network_error" }); } catch {}
         status.className = "form-status show error";
         status.innerHTML =
           'We could not confirm your submission. Your details are still here. If you have not received a reply, please email <a href="mailto:supplements@weeyar.com">supplements@weeyar.com</a> or <a href="https://wa.me/8613802837662" target="_blank" rel="noopener">contact us on WhatsApp</a>.';
