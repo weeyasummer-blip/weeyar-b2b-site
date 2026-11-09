@@ -440,6 +440,21 @@ document.addEventListener("DOMContentLoaded", () => {
     if (note)
       note.textContent = "Images, PDF, Word and Excel files are accepted.";
 
+    // Count a buyer's first edit once; never send field values to analytics.
+    let inquiryStarted = false;
+    const trackInquiryStart = (event) => {
+      if (inquiryStarted || !event.isTrusted || !event.target.matches("input:not([readonly]), textarea, select") || event.target.name === "website") return;
+      inquiryStarted = true;
+      try {
+        if (window.gtag) window.gtag("event", "inquiry_form_start", {
+          form_name: "contact_inquiry",
+          page_path: window.location.pathname
+        });
+      } catch { /* Tracking must not interrupt form entry. */ }
+    };
+    inquiryForm.addEventListener("input", trackInquiryStart);
+    inquiryForm.addEventListener("change", trackInquiryStart);
+
     const status = document.createElement("div");
     status.className = "form-status";
     status.setAttribute("role", "status");
