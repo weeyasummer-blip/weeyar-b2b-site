@@ -419,6 +419,20 @@ document.addEventListener("DOMContentLoaded", () => {
       if (matchingOption) categorySelect.value = matchingOption.value;
     }
 
+    // Preserve an explicit inquiry intent without overwriting a buyer's message.
+    const requestMessages = {
+      "Ingredients and samples": "I would like to review the current ingredient declaration and sample options. Please confirm available sample quantities, charges and shipping.\n\nTarget market / postal code:\nEstimated quantity:",
+      "Private label and carton": "I would like to discuss my own label and the original carton artwork for this product. Please confirm the packaging scope, MOQ and available options.\n\nTarget market:\nEstimated quantity:",
+      "Specifications and documents": "I would like to review the current product specification and available documents for my project.\n\nProduct / format:\nTarget market:\nEstimated quantity:\nDocuments needed:"
+    };
+    const explicitRequest = Object.prototype.hasOwnProperty.call(requestMessages, requestedDocumentation) ? requestedDocumentation : "";
+    const requestDetails = inquiryForm.querySelector("#contact-details");
+    if (!selectedPackaging && explicitRequest && requestDetails && !requestDetails.value.trim()) {
+      requestDetails.value = requestMessages[explicitRequest];
+      const requestStatus = inquiryForm.querySelector("#request-choice-status");
+      if (requestStatus) requestStatus.textContent = "Your " + explicitRequest.toLowerCase() + " request is ready to edit below.";
+    }
+
     const supplyExperience = document.querySelector(".response span");
     if (supplyExperience)
       supplyExperience.textContent = "Dietary supplement supply experience";
