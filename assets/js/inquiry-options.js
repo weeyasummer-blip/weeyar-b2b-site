@@ -56,10 +56,5 @@ document.addEventListener("DOMContentLoaded", () => {
       details.focus();
     });
   });
-  let started = false;
-  form.addEventListener("input", () => {
-    if (started) return;
-    started = true;
-    try { if (window.gtag) window.gtag("event", "inquiry_form_start", {form_name: "contact_inquiry", packaging_type: details && details.value.startsWith("Packaging interest:") ? new URLSearchParams(location.search).get("packaging") : "not_selected"}); } catch {}
-  });
+  // main.js owns inquiry_form_start so one buyer edit is counted once.
 });
