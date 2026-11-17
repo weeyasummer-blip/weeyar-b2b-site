@@ -369,6 +369,282 @@
     },
     {
       "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "magnesium-glycinate"
+        }
+      ],
+      "destination": "/products/magnesium-glycinate",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "creatine-gummies"
+        }
+      ],
+      "destination": "/products/creatine-gummies",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "vitamin-d3-k2"
+        }
+      ],
+      "destination": "/products/vitamin-d3-k2",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "melatonin-slumber-gummies"
+        }
+      ],
+      "destination": "/products/melatonin-slumber-gummies",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "aged-garlic-softgels"
+        }
+      ],
+      "destination": "/products/aged-garlic-softgels",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "sleep-support-gummies"
+        }
+      ],
+      "destination": "/products/sleep-support-gummies",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "vitamin-b12-tablets"
+        }
+      ],
+      "destination": "/products/vitamin-b12-tablets",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "liver-detox-drops"
+        }
+      ],
+      "destination": "/products/liver-detox-drops",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "tanning-gummies"
+        }
+      ],
+      "destination": "/products/tanning-gummies",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "cutting-drops"
+        }
+      ],
+      "destination": "/products/cutting-drops",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "slippery-elm-drops"
+        }
+      ],
+      "destination": "/products/slippery-elm-drops",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "lymphatic-drainage-drops"
+        }
+      ],
+      "destination": "/products/lymphatic-drainage-drops",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "apple-cider-vinegar"
+        }
+      ],
+      "destination": "/products/apple-cider-vinegar",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "multi-collagen-gummies"
+        }
+      ],
+      "destination": "/products/multi-collagen-gummies",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "tart-cherry-gummies"
+        }
+      ],
+      "destination": "/products/tart-cherry-gummies",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "omega-3-fish-oil"
+        }
+      ],
+      "destination": "/products/omega-3-fish-oil",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "vitamin-b-complex-capsules"
+        }
+      ],
+      "destination": "/products/vitamin-b-complex-capsules",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "apple-cider-vinegar-gummies-60"
+        }
+      ],
+      "destination": "/products/apple-cider-vinegar-gummies-60",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "pumpkin-seed-oil-drops"
+        }
+      ],
+      "destination": "/products/pumpkin-seed-oil-drops",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "mullein-herbal-drops"
+        }
+      ],
+      "destination": "/products/mullein-herbal-drops",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "cordyceps-herbal-drops"
+        }
+      ],
+      "destination": "/products/cordyceps-herbal-drops",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "respiratory-herbal-spray"
+        }
+      ],
+      "destination": "/products/respiratory-herbal-spray",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "vitamin-c-effervescent"
+        }
+      ],
+      "destination": "/products/vitamin-c-effervescent",
+      "permanent": true
+    },
+    {
+      "source": "/product-detail",
       "destination": "/products",
       "permanent": true
     }
