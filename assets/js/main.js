@@ -236,7 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Turn generic WhatsApp links into useful, page-aware conversations.
   // Existing product-specific messages are preserved.
-  const pageProduct = document.querySelector(".pd-grid h1, .detail-copy h1");
+  const pageProduct = document.querySelector(".pd-grid h1, .detail-copy h1, .new-hero h1");
   const requestedWhatsAppProduct = new URLSearchParams(
     window.location.search,
   ).get("product");
@@ -307,7 +307,7 @@ document.addEventListener("DOMContentLoaded", () => {
     storage.setItem("landing_page", window.location.href);
   }
 
-  const productHeading = document.querySelector(".pd-grid h1, .detail-copy h1");
+  const productHeading = document.querySelector(".pd-grid h1, .detail-copy h1, .new-hero h1");
   if (/^\/products\//.test(window.location.pathname) && productHeading) {
     storage.setItem("source_product", productHeading.textContent.trim());
     storage.setItem("source_product_page", window.location.href);

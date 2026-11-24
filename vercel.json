@@ -58,6 +58,11 @@
   ],
   "redirects": [
     {
+      "source": "/contact-us",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
       "source": "/oem-odm",
       "destination": "/oem",
       "permanent": true
