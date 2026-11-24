@@ -51,8 +51,9 @@ function captureAttribution() {
   } catch (_) {}
   window.weeyarTestMode =
     testSetting === "1" || (testSetting !== "0" && storedTest);
-  window["ga-disable-" + measurementId] = window.weeyarTestMode;
-  if (window.weeyarTestMode) {
+  const isProductionHost = ["weeyar.com", "www.weeyar.com"].includes(window.location.hostname);
+  window["ga-disable-" + measurementId] = window.weeyarTestMode || !isProductionHost;
+  if (window.weeyarTestMode || !isProductionHost) {
     window.gtag = function () {};
     return;
   }
