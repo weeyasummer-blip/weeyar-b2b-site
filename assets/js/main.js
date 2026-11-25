@@ -624,3 +624,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const link = [...document.querySelectorAll('header nav.links > a')].find(a => new URL(a.href).pathname === '/products');
+  if (!link) return;
+  const group = document.createElement('span'); group.className = 'pkg-nav product-nav'; link.before(group); group.append(link);
+  const toggle = document.createElement('button'); toggle.type = 'button'; toggle.className = 'pkg-nav-toggle'; toggle.textContent = '▾';
+  toggle.setAttribute('aria-label', 'Show product categories'); toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-controls', 'product-nav-options');
+  const panel = document.createElement('span'); panel.className = 'pkg-nav-panel product-nav-panel'; panel.id = 'product-nav-options'; panel.hidden = true;
+  const entries = [['All Products','/products'],['Gummy Supplements','/categories/gummies'],['Capsules & Probiotics','/categories/capsules-probiotics'],['Liquid Drops','/categories/liquid-drops'],['Powders & Other Formats','/categories/powders-functional-formats'],['Gut Health & Probiotic Collection','/collections/gut-health-probiotics']];
+  entries.forEach(([name,href],i) => {const a=document.createElement('a');a.textContent=name;a.href=href;if(i===entries.length-1)a.className='collection-nav-link';panel.append(a);});
+  const show = value => { panel.hidden = !value; toggle.setAttribute('aria-expanded', String(value)); };
+  toggle.addEventListener('click', () => show(panel.hidden));
+  group.addEventListener('mouseenter', () => { if (matchMedia('(min-width:1121px)').matches) show(true); });
+  group.addEventListener('mouseleave', () => { if (matchMedia('(min-width:1121px)').matches && !group.contains(document.activeElement)) show(false); });
+  group.addEventListener('keydown', e => { if(e.key==='Escape'){show(false);toggle.focus();} });
+  group.addEventListener('focusout', e => { if(!group.contains(e.relatedTarget))show(false); });
+  document.addEventListener('click', e => { if(!group.contains(e.target))show(false); });
+  group.append(toggle,panel);
+  const style=document.createElement('style');
+  style.textContent='.product-nav-panel{min-width:290px;padding:10px;border-radius:12px}.product-nav-panel a{font-size:15px!important;line-height:1.4;padding:13px 16px!important}.product-nav-panel a:hover,.product-nav-panel a:focus-visible{background:#f5f0ff;border-radius:7px}.product-nav-panel .collection-nav-link{border-top:1px solid #e9e1f2;margin-top:6px;padding-top:18px!important}@media(max-width:1120px){header .links.open .product-nav-panel{min-width:0;width:100%;position:static;box-shadow:none}header .links.open .product-nav-panel a{white-space:normal}}';
+  document.head.append(style);
+});
