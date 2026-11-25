@@ -7,3 +7,13 @@
 @media(max-width:540px){header .nav{gap:10px}header .nav .logo{width:125px;max-width:125px;height:auto}header .nav>.btn{font-size:13px;padding:11px 14px;white-space:nowrap;min-height:44px}header .menu{font-size:26px;padding:6px}}
 
 @media(max-width:380px){header .nav{gap:6px}header .nav .logo{width:100px;max-width:100px}header .nav>.btn{font-size:12px;padding:10px;min-height:44px}}
+
+/* Keep standard navigation inside its container at intermediate widths. */
+header .nav{gap:18px;position:relative}
+header .nav>a:first-child{flex-shrink:0}
+header .nav .logo{width:210px;max-width:100%;height:auto}
+header .nav>.btn{flex-shrink:0;white-space:nowrap}
+header .links{align-items:center;gap:20px;min-width:0}
+@media(max-width:1120px){header .nav{height:78px}header .links{display:none;position:absolute;top:100%;left:0;right:0;padding:18px;background:#fff;border:1px solid var(--line);border-radius:0 0 16px 16px;flex-direction:column;align-items:flex-start;gap:12px;max-height:calc(100dvh - 100px);overflow-y:auto}header .links.open{display:flex}header .menu{display:block;flex-shrink:0;cursor:pointer}header .nav>.btn{margin-left:auto}header .links.open .pkg-nav{display:flex;flex-wrap:wrap;width:100%}header .links.open .pkg-nav-panel{position:static;flex-basis:100%;box-shadow:none}header .links.open .pkg-nav-panel a{white-space:normal}}
+@media(max-width:540px){header .nav{gap:10px}header .nav .logo{width:125px}header .nav>.btn{font-size:13px;padding:11px 14px}}
+@media(max-width:380px){header .nav{gap:6px}header .nav .logo{width:100px}header .nav>.btn{font-size:12px;padding:10px}}

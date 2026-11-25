@@ -143,7 +143,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const links = document.querySelector(".links");
 
   if (menu && links) {
-    menu.addEventListener("click", () => links.classList.toggle("open"));
+    menu.setAttribute("aria-expanded", "false");
+    menu.setAttribute("aria-label", "Open navigation");
+    menu.addEventListener("click", () => {
+      const expanded = links.classList.toggle("open");
+      menu.setAttribute("aria-expanded", String(expanded));
+      menu.setAttribute("aria-label", expanded ? "Close navigation" : "Open navigation");
+    });
   }
 
   document.querySelectorAll(".filter[data-f]").forEach((button) => {
