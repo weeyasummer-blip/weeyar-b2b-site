@@ -58,6 +58,11 @@
   ],
   "redirects": [
     {
+      "source": "/products/cutting-drops",
+      "destination": "/products/digestive-comfort-drops",
+      "permanent": true
+    },
+    {
       "source": "/contact-us",
       "destination": "/contact",
       "permanent": true
